@@ -11,9 +11,9 @@ const Navbar = () => {
       <header className="absolute top-1/2 w-full -translate-y-1/2">
       <nav className="flex size-full items-center justify-between p-4">  
         <div className="flex items-center gap-7">
-          <Image src="/logo-dark.png" className="rounded-full" alt="logo" width={50} height={50} />
+          <Image src="/logo-light.jpg" className="rounded-full" alt="logo" width={50} height={50} />
           <div className="text-white font-bold text-3xl pb-2">Prajyot Porje</div>
-        </div>
+        </div> 
         <div>
 
         </div>
