@@ -47,7 +47,7 @@ body {
 .hero-background {
   background-image: url('/background-hero.png');
   background-size: cover;
-  background-position: center;
+  background-position: bottom ;
 }
 
 
