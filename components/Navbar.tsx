@@ -59,7 +59,7 @@ const Navbar = () => {
   ];
   return (
     <div className="">
-      <FloatingDock items={links} />
+      <FloatingDock items={links } />
     </div>
   );
 };
