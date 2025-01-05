@@ -28,23 +28,9 @@ const Navbar = () => {
       href: "#AboutSection",
     },
     {
-      title: "Skills",
-      icon: (
-        <IconBulb className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#",
-    },
-    {
       title: "Projects",
       icon: (
         <IconComponents className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-      ),
-      href: "#",
-    },
-    {
-      title: "Profiles",
-      icon: (
-        <IconUserCircle className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
       href: "#",
     },

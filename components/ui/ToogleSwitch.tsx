@@ -20,7 +20,7 @@ export default function DayNightToggle() {
   return (
     <button
       onClick={() => setTheme(isDay ? "dark" : "light")}
-      className="relative w-[60px] h-[30px] rounded-full p-1 cursor-pointer"
+      className="relative w-[60px] h-[30px] shadow-sm shadow-slate-50 rounded-full p-1 cursor-pointer"
       style={{
         boxShadow: "inset 0 2px 15px rgba(0,0,0,0.15)",
       }}

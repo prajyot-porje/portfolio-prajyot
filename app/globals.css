@@ -8,10 +8,10 @@ body {
 
 @layer utilities{
   .bg-dark {
-    background-color: #0F0F1F;
+    background:  #0F0F1F;
   }
   .bg-light{
-    background-color: #F9F9F9;
+    background : linear-gradient(#008220, #0fff6b);
   }
 }
 
