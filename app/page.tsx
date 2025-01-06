@@ -17,8 +17,8 @@ const page = () => {
       <AboutSection/>
       <SkillsSection/>
       <ProjectsSection/>
-      <ContactSection/>
-      <div className='fixed bottom-0 left-1/2 pb-5 transform -translate-x-1/2'>
+      {/* <ContactSection/> */}
+      <div className='fixed z-40 bottom-0 left-1/2 pb-5 transform -translate-x-1/2'>
           <Navbar />
         </div>
     </div>
