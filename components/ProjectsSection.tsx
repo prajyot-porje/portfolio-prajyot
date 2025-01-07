@@ -9,8 +9,13 @@ const boxFont = Suez_One({
 
 const ProjectsSection = () => {
   return (
-    <div className='h-screen w-screen bg-[#ff29f8] dark:bg-dark'>
-      <div className={`${boxFont.className} text-9xl font-bold text-center pr-80`}>PROJECTS</div>
+    <div className='h-screen w-screen bg-light dark:bg-dark'>
+      <div className={`${boxFont.className}  text-9xl font-bold text-center pr-80`}>PROJECTS</div>
+      <div className='h-28'></div>
+      <div className="flex flex-col justify-center items-center gap-4">
+        <img src='/Nexmeet.png' alt='project' height={700} width={700} className='rounded-lg' />
+        <div className='text-2xl'>NexMeet : A Video confrencing Website</div>
+      </div>
     </div>
 
   )
