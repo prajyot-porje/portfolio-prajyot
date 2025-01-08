@@ -13,8 +13,13 @@ body {
   .bg-light{
     background : #ffffff;
   }
-  .bentobg{
-    background: url('/bento-1.png');
+  .tailwind-light{
+    background: url('/next-light.png');
+    background-size: contain;
+    background-position: center;
+  }
+  .tailwind-dark{
+    background: url('/tailwind-dark.png');
     background-size: cover;
     background-position: center;
   }
