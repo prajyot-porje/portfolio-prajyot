@@ -1,23 +1,20 @@
 "use client";
 import AboutSection from "@/components/AboutSection";
-import ContactSection from "@/components/ContactSection";
 import HeroSection from "@/components/HeroSection";
 import Navbar from "@/components/Navbar";
 import ProjectsSection from "@/components/ProjectsSection";
-import SkillsSection from "@/components/SkillsSection";
-import { useTheme } from "@nextui-org/use-theme";
+import { useTheme } from "next-themes";
 import React from "react";
 
 const page = () => {
   const { theme } = useTheme();
+  const isDark = theme === "dark";
   return (
-    <main className={`${theme} text-foreground bg-background`}>
+    <main className={`${isDark ? 'dark' : 'light'} text-foreground bg-background`}>
       <div className="overflow-hidden  scroll">
         <HeroSection />
         <AboutSection />
-        {/* <SkillsSection/> */}
         <ProjectsSection />
-        {/* <ContactSection/> */}
         <div className="fixed z-40 bottom-0 left-1/2 pb-5 transform -translate-x-1/2">
           <Navbar />
         </div>

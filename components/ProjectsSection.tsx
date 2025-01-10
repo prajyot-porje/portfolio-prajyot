@@ -27,7 +27,7 @@ const ProjectsSection = () => {
           />
           <div className="text-2xl">NexMeet : A Video confrencing Website</div>
         </div>
-        <div className='h-72 w-72 bg-red-500 rounded-xl '></div>
+
       </div>
     </div>
   );

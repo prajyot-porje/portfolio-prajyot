@@ -29,7 +29,7 @@ const Hobbies = () => {
   ]
   return (
     <>
-    <div className="text-slate-800 dark:text-slate-100 pl-4 pt-2 text-2xl font-semibold">
+    <div className="bg-gradient-to-r to-[#34cfeb] from-[#e108f9] text-center bg-clip-text text-transparent  pt-2 text-2xl font-semibold">
         Hobbies
       </div>
       <div className="pt-5 px-8 h-[28vh] flex flex-col justify-between">

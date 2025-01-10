@@ -72,8 +72,8 @@ const Skills = () => {
     },
   ];
   return (
-    <>
-      <div className=" text-teal-800 dark:text-teal-100 text-center pt-2 text-3xl font-semibold">
+    <div className="px-1">
+      <div className="bg-gradient-to-r to-[#34cfeb] from-[#e108f9] bg-clip-text text-transparent text-center pt-2 text-2xl font-semibold">
         Skills
       </div>
 
@@ -93,10 +93,11 @@ const Skills = () => {
             >
               {itemsDark.map((item, idx) => (
                 <div key={idx} className={`${item.className} h-10 relative`}>
+                  
                   <img
                     src={item.src}
                     alt={item.className}
-                    className="h-full rounded-md w-full border-[1px] border-black"
+                    className="h-full rounded-md w-full border-[1px] border-gray-500"
                   />
                 </div>
               ))}
@@ -117,7 +118,7 @@ const Skills = () => {
                   <img
                     src={item.src}
                     alt={item.className}
-                    className="h-full rounded-md w-full border-[1px] border-black"
+                    className="h-full rounded-md w-full border-[1px] border-gray-500"
                   />
                 </div>
               ))}
@@ -142,7 +143,7 @@ const Skills = () => {
                   <img
                     src={item.src}
                     alt={item.className}
-                    className="h-full rounded-md w-full border-[1px] border-black"
+                    className="h-full rounded-md w-full border-[1px] border-gray-500"
                   />
                 </div>
               ))}
@@ -163,7 +164,7 @@ const Skills = () => {
                   <img
                     src={item.src}
                     alt={item.className}
-                    className="h-full rounded-md w-full border-[1px] border-black"
+                    className="h-full rounded-md w-full border-[1px] border-gray-500"
                   />
                 </div>
               ))}
@@ -171,7 +172,7 @@ const Skills = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
