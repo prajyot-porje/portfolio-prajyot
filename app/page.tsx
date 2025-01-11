@@ -10,9 +10,13 @@ const page = () => {
   const { theme } = useTheme();
   const isDark = theme === "dark";
   return (
-    <main className={`${isDark ? 'dark' : 'light'} text-foreground bg-background`}>
+    <main
+      className={`${isDark ? "dark" : "light"} text-foreground bg-background`}
+    >
       <div className="overflow-hidden  scroll">
-        <HeroSection />
+        <div className="z-30">
+          <HeroSection />
+        </div>
         <AboutSection />
         <ProjectsSection />
         <div className="fixed z-40 bottom-0 left-1/2 pb-5 transform -translate-x-1/2">
