@@ -13,6 +13,11 @@ body {
   .bg-light{
     background : #ffffff;
   }
+  .landscape-bg{
+    background: url('/landscape.png');
+    background-position: center;
+    background-size: cover;
+  }
 }
 
 @layer base {

@@ -37,7 +37,7 @@ const Profile = () => {
   ];
   return (
     <>
-      <div className="bg-gradient-to-r to-[#34cfeb] from-[#e108f9] bg-clip-text text-transparent text-center  pt-4 text-2xl font-semibold">
+      <div className=" text-center  pt-4 text-2xl font-semibold">
         Profiles
       </div>
       <div className="pt-5 px-8 h-[28vh] flex flex-col justify-between">

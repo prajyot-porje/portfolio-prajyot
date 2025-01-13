@@ -1,22 +1,28 @@
 "use client";
-import React, { useRef, useState, useEffect } from "react";
-import Skills from "./ui/bento-skills";
-import Bio from "./ui/bento-bio";
-import Profile from "./ui/bento-profiles";
-import Hobbies from "./ui/bento-hobbies";
-import { motion, useScroll, useTransform, useAnimation } from "framer-motion";
+import React, { useRef, useEffect } from "react";
+import { motion, useScroll, useSpring, useTransform, useAnimation } from "framer-motion";
 import { MagicCard } from "./ui/magic-card";
+import MagicCardsList from "./ui/MagicCardsList";
 
 const AboutSection = () => {
   const ref = useRef(null);
-  const controls = useAnimation();
 
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end end"],
   });
 
-  const scale = useTransform(scrollYProgress, [0.3, 0.5, 0.66], [2.4, 1.8, 1]);
+  // Use spring for smoother animation
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
+  // Adjust the input and output ranges for a more subtle scaling effect
+  const scale = useTransform(smoothProgress, [0.3, 0.5, 0.7], [2.4, 1.9, 1]);
+
+  const controls = useAnimation();
 
   useEffect(() => {
     const unsubscribe = scale.onChange((v) => {
@@ -37,7 +43,7 @@ const AboutSection = () => {
         style={{
           position: "sticky",
           top: 0,
-          y: useTransform(scrollYProgress, [0, 1], ["0vh", "100vh"]),
+          y: useTransform(smoothProgress, [0, 1], ["0vh", "100vh"]),
         }}
         className="h-screen flex items-center"
       >
@@ -48,23 +54,16 @@ const AboutSection = () => {
             transition={{ duration: 1, ease: "linear" }}
             className="rounded-2xl col-span-1 row-span-2"
           >
-            <MagicCard
-              bg="bg-indigo-50 dark:bg-[#252526]"
-              className="cursor-pointer shadow-2xl"
-            >
-              <Profile />
-            </MagicCard>
+            <MagicCardsList title="profile" />
           </motion.div>
 
-          <motion.div 
-          initial={{ y: "40%", opacity: 0 }}
-          animate={controls}
-          transition={{ duration: 1, ease: "linear" }}
-          className="rounded-2xl col-span-1 row-span-1">
-          <MagicCard
-            bg="bg-purple-50  dark:bg-[#252526]"
-            className="cursor-pointer shadow-2xl "
-          ></MagicCard>
+          <motion.div
+            initial={{ y: "40%", opacity: 0 }}
+            animate={controls}
+            transition={{ duration: 1, ease: "linear" }}
+            className="rounded-2xl col-span-1 row-span-1"
+          >
+            <MagicCardsList title="card1" />
           </motion.div>
 
           <motion.div
@@ -73,12 +72,7 @@ const AboutSection = () => {
             transition={{ duration: 1, ease: "linear" }}
             className="rounded-2xl col-span-2 row-span-1"
           >
-            <MagicCard
-              bg="bg-indigo-50 dark:bg-[#252526]"
-              className="cursor-pointer shadow-2xl "
-            >
-              <Bio />
-            </MagicCard>
+            <MagicCardsList title="bio" />
           </motion.div>
 
           <motion.div
@@ -86,21 +80,12 @@ const AboutSection = () => {
             className="rounded-2xl sticky col-span-2 row-span-2 z-30"
           >
             <MagicCard
-              bg="bg-teal-50  dark:bg-[#252526]"
+              bg="bg-gradient-to-br from-[#6c6ef8] to-[#4213d7] dark:"
               className="cursor-pointer shadow-xl flex justify-center items-center"
             >
               <div className="">
-                <motion.div
-                  initial={{ x:'20%',  opacity: 0 }}
-                  whileInView={{ x:0 , opacity: 1 }}
-                  viewport={{amount:0.9}}
-                  transition={{duration:1 , ease:'anticipate'}}
-                  className="text-9xl"
-                >
-                  <img src="/char.png" alt ="dev" height={200} width={200} className="rounded-full"/>
-                </motion.div>
                 <motion.div className="font-bold text-5xl">
-                  About Me{" "}
+                  About Me
                 </motion.div>
               </div>
             </MagicCard>
@@ -112,23 +97,16 @@ const AboutSection = () => {
             transition={{ duration: 1, ease: "linear" }}
             className="rounded-2xl col-span-1 row-span-2 z-10"
           >
-            <MagicCard
-              bg="bg-purple-50  dark:bg-[#252526]"
-              className="cursor-pointer  shadow-2xl"
-            >
-              <Hobbies />
-            </MagicCard>
+            <MagicCardsList title="hobbies" />
           </motion.div>
 
           <motion.div
-          initial={{ y: "-40%", opacity: 0 }}
+            initial={{ y: "-40%", opacity: 0 }}
             animate={controls}
             transition={{ duration: 1, ease: "linear" }}
-          className="rounded-2xl col-span-1 row-span-1">
-          <MagicCard
-            bg="bg-purple-50  dark:bg-[#252526]"
-            className="cursor-pointer shadow-2xl "
-          ></MagicCard>
+            className="rounded-2xl col-span-1 row-span-1"
+          >
+            <MagicCardsList title="card2" />
           </motion.div>
 
           <motion.div
@@ -137,12 +115,7 @@ const AboutSection = () => {
             transition={{ duration: 1, ease: "linear" }}
             className="rounded-2xl col-span-4 row-span-1 z-10"
           >
-            <MagicCard
-              bg="bg-indigo-50 dark:bg-[#252526]"
-              className="cursor-pointer shadow-2xl "
-            >
-              <Skills />
-            </MagicCard>
+            <MagicCardsList title="Skills" />
           </motion.div>
         </div>
       </motion.div>
@@ -151,3 +124,4 @@ const AboutSection = () => {
 };
 
 export default AboutSection;
+
