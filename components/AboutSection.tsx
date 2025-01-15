@@ -33,7 +33,8 @@ const AboutSection = () => {
       <motion.div
         style={{
           position: "sticky",
-          top: 0,
+          top: 0,  
+          y: useTransform(scrollYProgress, [0, 1], ["0vh", "100vh"],),
         }}
         className="h-screen flex items-center"
       >

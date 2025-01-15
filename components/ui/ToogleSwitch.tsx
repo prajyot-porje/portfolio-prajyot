@@ -11,6 +11,7 @@ export default function DayNightToggle() {
     setIsMounted(true);
   }, []);
 
+  
   if (!isMounted) {
     return null;
   }
