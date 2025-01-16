@@ -29,14 +29,14 @@ const Hobbies = () => {
   ]
   return (
     <>
-    <div className=" text-center   pt-2 text-2xl font-semibold">
+    <div className=" text-center  pt-4 text-2xl font-semibold">
         Hobbies
       </div>
       <div className="pt-5 px-8 h-[28vh] flex flex-col justify-between">
         {items.map((item)=>(
           <div key={item.title} className='flex gap-3'>
             {item.icon}
-            <div className="text-lg font-semibold text-slate-800 dark:text-slate-100 text-center">{item.title}</div>
+            <div className="text-lg font-semibold text-purple-800 dark:text-slate-100 text-center">{item.title}</div>
           </div>
         ))}
       </div>

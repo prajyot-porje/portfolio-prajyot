@@ -5,7 +5,7 @@ type Props = {};
 const Bio = (props: Props) => {
   return (
     <div className="">
-      <div className=" bg-gradient-to-r to-[#34cfeb] from-[#e108f9] text-center bg-clip-text text-transparent  pt-2 text-2xl font-semibold">
+      <div className=" bg-gradient-to-r to-[#000000] via-purple-500 from-[#7d2f98] text-center bg-clip-text text-transparent  pt-2 text-2xl font-semibold">
         Bio
       </div>
       <div className="text-lg text-start px-4 pt-3 font-semibold text-gray-700 dark:text-gray-300">

@@ -37,14 +37,14 @@ const Profile = () => {
   ];
   return (
     <>
-      <div className=" text-center  pt-4 text-2xl font-semibold">
+      <div className="bg-gradient-to-r to-[#000000] via-purple-500 from-[#7d2f98] text-center bg-clip-text text-transparent  pt-4 text-2xl font-semibold">
         Profiles
       </div>
       <div className="pt-5 px-8 h-[28vh] flex flex-col justify-between">
         {items.map((item)=>(
           <Link key={item.title} href={item.href} className="flex gap-3">
             {item.logo}
-            <div className="text-lg text-slate-800 dark:text-slate-100 dark:hover:text-blue-500 hover:text-blue-500 text-center font-semibold">{item.title}</div>
+            <div className="text-lg text-black dark:text-slate-100 dark:hover:text-blue-500 hover:text-blue-500 text-center font-semibold">{item.title}</div>
           </Link>
         ))}       
       
