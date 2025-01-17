@@ -30,22 +30,22 @@ const MagicCardsList: React.FC<MagicCardsListProps> = ({ title  }) => {
     }
     function bglement(){
         if(title === 'Skills'){
-            return 'bg-[#edf3ab] dark:bg-[#252526]'
+            return 'bg-gradient-to- dark:bg-gradient-to-b from-[#353ad9] to-[#150061] '
         }
         else if(title === 'profile'){
-            return 'bg-[#e5cecb] dark:bg-[#252526]'
+            return 'bg-gradient-to- dark:bg-gradient-to-l from-[#38c541] to-[#035811] '
         }
         else if(title === 'bio'){
-            return 'bg-[#f4f2ed] dark:bg-[#252526]'
+            return 'bg-gradient-to-t from-[#8d38c5] to-[#ca7afb] dark:to-[#50035a] '
         }
         else if(title === 'hobbies'){
-            return 'bg-[#b3d6d2]  dark:bg-[#252526]'
+            return 'bg-gradient-to-r from-[#785124] to-[#7e6243]'
         }
         else if(title === 'card1'){
-            return 'bg-[#59595e]   dark:bg-[#252526]'
+            return 'bg-gradient-to- dark:bg-gradient-to-b from-[#353ad9] to-[#150061] '
         }
         else if(title === 'card2'){
-            return 'bg-[#fff]   dark:bg-[#252526]'
+            return 'bg-gradient-to-r from-[#785124] to-[#7e6243] '
         }
     }
   
@@ -53,7 +53,7 @@ const MagicCardsList: React.FC<MagicCardsListProps> = ({ title  }) => {
   return (
     <MagicCard
       bg={bglement()}
-      className="cursor-pointer shadow-2xl "
+      className="cursor-pointer bg-gradient-to-t  shadow-2xl "
     >
         {element()}
     </MagicCard>

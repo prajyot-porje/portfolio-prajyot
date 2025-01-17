@@ -29,7 +29,7 @@ const Hobbies = () => {
   ]
   return (
     <>
-    <div className=" text-center  pt-4 text-2xl font-semibold">
+    <div className=" text-center text-green-100  pt-4 text-2xl font-semibold">
         Hobbies
       </div>
       <div className="pt-5 px-8 h-[28vh] flex flex-col justify-between">

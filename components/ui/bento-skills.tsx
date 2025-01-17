@@ -73,7 +73,7 @@ const Skills = () => {
   ];
   return (
     <div className="px-1">
-      <div className="bg-gradient-to-r to-[#000000] via-purple-500 from-[#7d2f98] text-center bg-clip-text text-transparent  pt-2 text-2xl font-semibold">
+      <div className=" text-center  pt-2 text-2xl font-semibold">
         Skills
       </div>
 
