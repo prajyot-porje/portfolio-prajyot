@@ -1,15 +1,10 @@
-"use client";
+"use client"
 
-import type React from "react";
+import type React from "react"
 
-import { useState, useEffect, useRef } from "react";
-import {
-  motion,
-  AnimatePresence,
-  useScroll,
-  useTransform,
-} from "framer-motion";
-import { LinkPreview } from "@/components/ui/link-preview";
+import { useState, useEffect, useRef } from "react"
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
+import { LinkPreview } from "@/components/ui/link-preview"
 import {
   Mail,
   Github,
@@ -22,12 +17,14 @@ import {
   Palette,
   ExternalLink,
   Download,
-} from "lucide-react";
-import Image from "next/image";
-import { TbBrandLeetcode } from "react-icons/tb";
-import SkillsSection from "@/components/custom/Skills";
-import ProjectsShowcase from "@/components/custom/Projects";
-import { introPages } from "@/constants";
+} from "lucide-react"
+import Image from "next/image"
+import { TbBrandLeetcode } from "react-icons/tb"
+import SkillsSection from "@/components/custom/Skills"
+import ProjectsShowcase from "@/components/custom/Projects"
+import { introPages } from "@/constants"
+
+
 
 const pageVariants = {
   exit: (custom: number) => {
@@ -36,16 +33,16 @@ const pageVariants = {
       { x: window.innerWidth, y: 200, rotate: 25, scale: 0.9 },
       { x: -window.innerWidth, y: 300, rotate: -20, scale: 0.7 },
       { x: window.innerWidth, y: -300, rotate: 30, scale: 0.8 },
-    ];
-    return exitAnimations[custom] || exitAnimations[0];
+    ]
+    return exitAnimations[custom] || exitAnimations[0]
   },
-};
+}
 
 const topSkills = [
   { name: "Next.js", img: "/assets/nextjs.svg" },
   { name: "TypeScript", img: "/assets/typescriptlang.svg" },
   { name: "Node.js", img: "/assets/nodejs.svg" },
-];
+]
 
 const projects = [
   {
@@ -60,8 +57,7 @@ const projects = [
   },
   {
     title: "E-Commerce Platform",
-    description:
-      "Full-stack e-commerce solution with payment integration, inventory management, and admin dashboard.",
+    description: "Full-stack e-commerce solution with payment integration, inventory management, and admin dashboard.",
     tech: ["React", "Node.js", "MongoDB", "Stripe", "Express"],
     image: "/assets/projects/ecommerce-screenshot",
     github: "https://github.com/prajyot-porje/ecommerce",
@@ -70,8 +66,7 @@ const projects = [
   },
   {
     title: "Task Management App",
-    description:
-      "Collaborative task management application with real-time updates and team collaboration features.",
+    description: "Collaborative task management application with real-time updates and team collaboration features.",
     tech: ["Vue.js", "Firebase", "Vuetify", "PWA"],
     image: "/assets/projects/taskmanager-screenshot",
     github: "https://github.com/prajyot-porje/taskmanager",
@@ -88,183 +83,115 @@ const projects = [
     live: "https://weather-dashboard-demo.vercel.app",
     featured: false,
   },
-];
-
-// Define styles as objects to ensure they're not purged
-const getPageStyles = (page: any) => {
-  const baseStyles = "fixed inset-0 w-screen h-screen flex items-center justify-center overflow-hidden";
-  
-  // Create a mapping of background colors with inline styles as fallback
-  const bgColorMap: { [key: string]: { className: string; style?: React.CSSProperties } } = {
-    'bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900': {
-      className: 'bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900',
-      style: { background: 'linear-gradient(135deg, #581c87 0%, #1e3a8a 50%, #312e81 100%)' }
-    },
-    'bg-gradient-to-br from-emerald-900 via-teal-900 to-cyan-900': {
-      className: 'bg-gradient-to-br from-emerald-900 via-teal-900 to-cyan-900',
-      style: { background: 'linear-gradient(135deg, #064e3b 0%, #134e4a 50%, #164e63 100%)' }
-    },
-    'bg-gradient-to-br from-orange-900 via-red-900 to-pink-900': {
-      className: 'bg-gradient-to-br from-orange-900 via-red-900 to-pink-900',
-      style: { background: 'linear-gradient(135deg, #7c2d12 0%, #7f1d1d 50%, #831843 100%)' }
-    },
-    'bg-gradient-to-br from-slate-900 via-gray-900 to-zinc-900': {
-      className: 'bg-gradient-to-br from-slate-900 via-gray-900 to-zinc-900',
-      style: { background: 'linear-gradient(135deg, #0f172a 0%, #111827 50%, #18181b 100%)' }
-    },
-  };
-  
-  const bgConfig = bgColorMap[page.bgColor] || { className: page.bgColor };
-  
-  return {
-    className: `${baseStyles} ${bgConfig.className}`,
-    style: bgConfig.style
-  };
-};
-
-const getTextStyles = (page: any) => {
-  // Create a mapping of text colors
-  const textColorMap: { [key: string]: string } = {
-    'text-white': 'text-white',
-    'text-gray-100': 'text-gray-100',
-    'text-slate-100': 'text-slate-100',
-  };
-  
-  const accentColorMap: { [key: string]: string } = {
-    'text-purple-300': 'text-purple-300',
-    'text-emerald-300': 'text-emerald-300',
-    'text-orange-300': 'text-orange-300',
-    'text-slate-300': 'text-slate-300',
-  };
-  
-  return {
-    textColor: textColorMap[page.textColor] || page.textColor,
-    accentColor: accentColorMap[page.accentColor] || page.accentColor,
-  };
-};
+]
 
 export default function page() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const skillsRef = useRef<HTMLDivElement>(null);
-  const projectsRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null)
+  const skillsRef = useRef<HTMLDivElement>(null)
+  const projectsRef = useRef<HTMLDivElement>(null)
 
-  const [currentPage, setCurrentPage] = useState(0);
-  const [showBento, setShowBento] = useState(false);
-  const [bentoAnimationStage, setBentoAnimationStage] = useState(0);
-  const [shouldShowIntro, setShouldShowIntro] = useState(true);
+  const [currentPage, setCurrentPage] = useState(0)
+  const [showBento, setShowBento] = useState(false)
+  const [bentoAnimationStage, setBentoAnimationStage] = useState(0)
+  const [shouldShowIntro, setShouldShowIntro] = useState(true)
 
   // Scroll-based animations
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
-  });
+  })
 
-  const bentoY = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const bentoScale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.95, 0.9]);
-  const bentoOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.8, 1],
-    [1, 0.8, 0.6]
-  );
+  const bentoY = useTransform(scrollYProgress, [0, 1], [0, -100])
+  const bentoScale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.95, 0.9])
+  const bentoOpacity = useTransform(scrollYProgress, [0, 0.8, 1], [1, 0.8, 0.6])
 
   useEffect(() => {
     // Simple intro logic - always show intro on first load
-    setShouldShowIntro(true);
-  }, []);
+    setShouldShowIntro(true)
+  }, [])
 
   useEffect(() => {
     if (shouldShowIntro) {
       if (currentPage < introPages.length) {
         const timer = setTimeout(() => {
-          setCurrentPage((prev) => prev + 1);
-        }, 2000);
-        return () => clearTimeout(timer);
+          setCurrentPage((prev) => prev + 1)
+        }, 2000)
+        return () => clearTimeout(timer)
       } else {
         const timer = setTimeout(() => {
-          setShowBento(true);
-          setTimeout(() => setBentoAnimationStage(1), 500);
-          setTimeout(() => setBentoAnimationStage(2), 2000);
-        }, 1000);
-        return () => clearTimeout(timer);
+          setShowBento(true)
+          setTimeout(() => setBentoAnimationStage(1), 500)
+          setTimeout(() => setBentoAnimationStage(2), 2000)
+        }, 1000)
+        return () => clearTimeout(timer)
       }
     }
-  }, [currentPage, shouldShowIntro]);
+  }, [currentPage, shouldShowIntro])
 
   const handleDownloadResume = () => {
-    const link = document.createElement("a");
-    link.href = "/resume.pdf";
-    link.download = "Prajyot_Porje_Resume.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+    const link = document.createElement("a")
+    link.href = "/resume.pdf"
+    link.download = "Prajyot_Porje_Resume.pdf"
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
 
   const scrollToSection = (ref: React.RefObject<HTMLDivElement | null>) => {
-    ref.current?.scrollIntoView({ behavior: "smooth" });
-  };
+    ref.current?.scrollIntoView({ behavior: "smooth" })
+  }
 
   const handleSkillsNavigation = () => {
-    sessionStorage.setItem("skipIntro", "true");
-    scrollToSection(skillsRef);
-  };
+    sessionStorage.setItem("skipIntro", "true")
+    scrollToSection(skillsRef)
+  }
 
   const handleProjectsNavigation = () => {
-    sessionStorage.setItem("skipIntro", "true");
-    scrollToSection(projectsRef);
-  };
+    sessionStorage.setItem("skipIntro", "true")
+    scrollToSection(projectsRef)
+  }
 
   if (shouldShowIntro && !showBento) {
     return (
       <div className="intro-container fixed inset-0 w-screen h-screen">
-        {introPages.map((page, index) => {
-          const styles = getTextStyles(page);
-          const pageStyles = getPageStyles(page);
-          return (
-            <AnimatePresence key={page.id}>
-              {index >= currentPage && (
-                <motion.div
-                  key={page.id}
-                  custom={index}
-                  variants={pageVariants}
-                  animate={{ x: 0, y: 0, rotate: 0, scale: 1 }}
-                  exit="exit"
-                  transition={{
-                    duration: 1.2,
-                    ease: "easeInOut",
-                    type: "tween",
-                  }}
-                  className={pageStyles.className}
-                  style={{ 
-                    zIndex: introPages.length - index,
-                    ...pageStyles.style 
-                  }}
-                >
-                  <div className="text-center relative z-10 px-4">
-                    <p
-                      className={`${styles.accentColor} text-lg mb-8 font-light tracking-wider`}
+        {introPages.map((page, index) => (
+          <AnimatePresence key={page.id}>
+            {index >= currentPage && (
+              <motion.div
+                key={page.id}
+                custom={index}
+                variants={pageVariants}
+                animate={{ x: 0, y: 0, rotate: 0, scale: 1 }}
+                exit="exit"
+                transition={{
+                  duration: 1.2,
+                  ease: "easeInOut",
+                  type: "tween",
+                }}
+                className={`fixed inset-0 w-screen h-screen flex items-center justify-center ${page.bgColor} overflow-hidden`}
+                style={{ zIndex: introPages.length - index }}
+              >
+                <div className="text-center relative z-10 px-4">
+                  <p className={`${page.accentColor} text-lg mb-8 font-light tracking-wider`}>{page.description}</p>
+                  <div className="space-y-4">
+                    <h1
+                      className={`text-6xl sm:text-8xl md:text-9xl font-black ${page.textColor} tracking-tighter transform -skew-y-2`}
                     >
-                      {page.description}
-                    </p>
-                    <div className="space-y-4">
-                      <h1
-                        className={`text-6xl sm:text-8xl md:text-9xl font-black ${styles.textColor} tracking-tighter transform -skew-y-2`}
-                      >
-                        {page.title}
-                      </h1>
-                      <h2
-                        className={`text-4xl sm:text-6xl md:text-7xl font-black ${styles.textColor} tracking-tighter transform skew-y-1`}
-                      >
-                        {page.subtitle}
-                      </h2>
-                    </div>
+                      {page.title}
+                    </h1>
+                    <h2
+                      className={`text-4xl sm:text-6xl md:text-7xl font-black ${page.textColor} tracking-tighter transform skew-y-1`}
+                    >
+                      {page.subtitle}
+                    </h2>
                   </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          );
-        })}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        ))}
       </div>
-    );
+    )
   }
 
   return (
@@ -288,27 +215,17 @@ export default function page() {
             >
               {/* Header */}
               <motion.div
-                initial={{
-                  opacity: !shouldShowIntro ? 1 : 0,
-                  y: !shouldShowIntro ? 0 : -50,
-                }}
+                initial={{ opacity: !shouldShowIntro ? 1 : 0, y: !shouldShowIntro ? 0 : -50 }}
                 animate={{
                   opacity: bentoAnimationStage >= 2 ? 1 : 0,
                   y: bentoAnimationStage >= 2 ? 0 : -50,
                 }}
-                transition={{
-                  delay: !shouldShowIntro ? 0 : 0.1,
-                  duration: 0.6,
-                }}
+                transition={{ delay: !shouldShowIntro ? 0 : 0.1, duration: 0.6 }}
                 className="col-span-12 row-span-1 bg-emerald-800 rounded-xl sm:rounded-2xl p-3 sm:p-6 flex items-center justify-between overflow-hidden"
               >
                 <div>
-                  <h1 className="text-lg sm:text-2xl font-bold text-white">
-                    Prajyot Porje
-                  </h1>
-                  <p className="text-emerald-200 text-sm">
-                    Full Stack Developer & ML Engineer
-                  </p>
+                  <h1 className="text-lg sm:text-2xl font-bold text-white">Prajyot Porje</h1>
+                  <p className="text-emerald-200 text-sm">Full Stack Developer & ML Engineer</p>
                 </div>
                 <div className="flex gap-2 sm:gap-3">
                   <div className="w-2 h-2 sm:w-3 sm:h-3 bg-red-400 rounded-full"></div>
@@ -319,152 +236,113 @@ export default function page() {
 
               {/* Main Quote */}
               <motion.div
-                initial={{
-                  opacity: !shouldShowIntro ? 1 : 0,
-                  x: !shouldShowIntro ? 0 : -50,
-                }}
+                initial={{ opacity: !shouldShowIntro ? 1 : 0, x: !shouldShowIntro ? 0 : -50 }}
                 animate={{
                   opacity: bentoAnimationStage >= 2 ? 1 : 0,
                   x: bentoAnimationStage >= 2 ? 0 : -50,
                 }}
-                transition={{
-                  delay: !shouldShowIntro ? 0 : 0.2,
-                  duration: 0.6,
-                }}
+                transition={{ delay: !shouldShowIntro ? 0 : 0.2, duration: 0.6 }}
                 className="col-span-5 row-span-3 bg-emerald-700 rounded-xl sm:rounded-2xl p-4 sm:p-8 flex flex-col justify-center overflow-hidden"
               >
                 <h2 className="text-xl sm:text-3xl font-light text-white leading-tight mb-2 sm:mb-4">
                   Crafting digital experiences through
-                  <span className="font-bold text-emerald-200">
-                    {" "}
-                    innovative design
-                  </span>
+                  <span className="font-bold text-emerald-200"> innovative design</span>
                 </h2>
                 <p className="text-emerald-300 text-xs sm:text-sm">
-                  Blending creativity with technology to build meaningful
-                  solutions
+                  Blending creativity with technology to build meaningful solutions
                 </p>
               </motion.div>
 
               {/* Profile Photo */}
-              {typeof window !== "undefined" && (
-                <motion.div
-                  initial={
-                    !shouldShowIntro
-                      ? { opacity: 1, scale: 1 }
-                      : {
-                          opacity: 1,
-                          scale: 2,
-                          x: "calc(-66.666667% + 50%)",
-                          y: "calc(-25% + 50%)",
-                          zIndex: 50,
-                        }
+              <motion.div
+                initial={
+                  !shouldShowIntro
+                    ? { opacity: 1, scale: 1 }
+                    : {
+                        opacity: 1,
+                        scale: 2,
+                        x: "calc(-66.666667% + 50%)",
+                        y: "calc(-25% + 50%)",
+                        zIndex: 50,
+                      }
+                }
+                animate={{
+                  opacity: bentoAnimationStage >= 1 ? 1 : 0,
+                  scale: 1,
+                  x: 0,
+                  y: 0,
+                  zIndex: 1,
+                }}
+                transition={{
+                  delay: !shouldShowIntro ? 0 : 0,
+                  duration: !shouldShowIntro ? 0.6 : 1.5,
+                  ease: "easeInOut",
+                }}
+                onAnimationComplete={() => {
+                  if (shouldShowIntro && bentoAnimationStage === 1) {
+                    setTimeout(() => setBentoAnimationStage(2), 100)
                   }
-                  animate={{
-                    opacity: bentoAnimationStage >= 1 ? 1 : 0,
-                    scale: 1,
-                    x: 0,
-                    y: 0,
-                    zIndex: 1,
-                  }}
-                  transition={{
-                    delay: !shouldShowIntro ? 0 : 0,
-                    duration: !shouldShowIntro ? 0.6 : 1.5,
-                    ease: "easeInOut",
-                  }}
-                  onAnimationComplete={() => {
-                    if (shouldShowIntro && bentoAnimationStage === 1) {
-                      setTimeout(() => setBentoAnimationStage(2), 100);
-                    }
-                  }}
-                  className="col-span-3 row-span-3 bg-[#faf9f9] rounded-xl sm:rounded-2xl overflow-hidden"
-                >
-                  <Image
-                    src="/assets/profile.jpg"
-                    alt="Profile"
-                    width={600}
-                    height={800}
-                    className="w-full h-full object-contain"
-                    priority
-                  />
-                </motion.div>
-              )}
+                }}
+                className="col-span-3 row-span-3 bg-[#faf9f9] rounded-xl sm:rounded-2xl overflow-hidden"
+              >
+                <Image
+                  src="/assets/profile.jpg"
+                  alt="Profile"
+                  width={600}
+                  height={800}
+                  className="w-full h-full object-contain"
+                />
+              </motion.div>
 
               {/* Education */}
               <motion.div
-                initial={{
-                  opacity: !shouldShowIntro ? 1 : 0,
-                  x: !shouldShowIntro ? 0 : 50,
-                }}
+                initial={{ opacity: !shouldShowIntro ? 1 : 0, x: !shouldShowIntro ? 0 : 50 }}
                 animate={{
                   opacity: bentoAnimationStage >= 2 ? 1 : 0,
                   x: bentoAnimationStage >= 2 ? 0 : 50,
                 }}
-                transition={{
-                  delay: !shouldShowIntro ? 0 : 0.4,
-                  duration: 0.6,
-                }}
+                transition={{ delay: !shouldShowIntro ? 0 : 0.4, duration: 0.6 }}
                 className="col-span-4 row-span-3 bg-teal-600 rounded-xl sm:rounded-2xl p-3 sm:p-6 overflow-hidden"
               >
                 <div className="flex items-center gap-2 mb-2 sm:mb-3">
                   <GraduationCap className="w-4 h-4 sm:w-5 sm:h-5 text-teal-200" />
-                  <h3 className="text-sm sm:text-lg font-semibold text-white">
-                    Education
-                  </h3>
+                  <h3 className="text-sm sm:text-lg font-semibold text-white">Education</h3>
                 </div>
                 <div className="space-y-3 sm:space-y-3">
                   <div className="bg-teal-700 rounded-lg p-3">
                     <div className="flex items-center gap-2 mb-1">
                       <GraduationCap className="w-3 h-3 sm:w-4 sm:h-4 text-teal-200" />
-                      <span className="text-teal-100 text-xs sm:text-sm font-medium">
-                        Bachelor of Engineering
-                      </span>
+                      <span className="text-teal-100 text-xs sm:text-sm font-medium">Bachelor of Engineering</span>
                     </div>
                     <p className="text-white text-xs sm:text-sm font-semibold">
                       Artificial Intelligence & Machine Learning
                     </p>
-                    <p className="text-teal-200 text-xs">
-                      PES Modern College Of Engineering, Pune • 2023-2027
-                    </p>
+                    <p className="text-teal-200 text-xs">PES Modern College Of Engineering, Pune • 2023-2027</p>
                   </div>
                   <div className="bg-teal-700 rounded-lg p-3">
                     <div className="flex items-center gap-2 mb-1">
                       <School className="w-3 h-3 sm:w-4 sm:h-4 text-teal-200" />
-                      <span className="text-teal-100 text-xs sm:text-sm font-medium">
-                        Higher Secondary Education
-                      </span>
+                      <span className="text-teal-100 text-xs sm:text-sm font-medium">Higher Secondary Education</span>
                     </div>
-                    <p className="text-white text-xs sm:text-sm font-semibold">
-                      Science & Technology
-                    </p>
-                    <p className="text-teal-200 text-xs">
-                      SVKT College, Nashik • 2021-2023
-                    </p>
+                    <p className="text-white text-xs sm:text-sm font-semibold">Science & Technology</p>
+                    <p className="text-teal-200 text-xs">SVKT College, Nashik • 2021-2023</p>
                   </div>
                 </div>
               </motion.div>
 
               {/* Skills Preview with Button */}
               <motion.div
-                initial={{
-                  opacity: !shouldShowIntro ? 1 : 0,
-                  y: !shouldShowIntro ? 0 : 50,
-                }}
+                initial={{ opacity: !shouldShowIntro ? 1 : 0, y: !shouldShowIntro ? 0 : 50 }}
                 animate={{
                   opacity: bentoAnimationStage >= 2 ? 1 : 0,
                   y: bentoAnimationStage >= 2 ? 0 : 50,
                 }}
-                transition={{
-                  delay: !shouldShowIntro ? 0 : 0.5,
-                  duration: 0.6,
-                }}
+                transition={{ delay: !shouldShowIntro ? 0 : 0.5, duration: 0.6 }}
                 className="col-span-4 row-span-2 bg-slate-800 rounded-xl sm:rounded-2xl p-3 sm:p-6 overflow-hidden"
               >
                 <div className="flex items-center gap-2 mb-2 sm:mb-4">
                   <Code2 className="w-4 h-4 sm:w-5 sm:h-5 text-slate-300" />
-                  <h3 className="text-sm sm:text-lg font-semibold text-white">
-                    Skills
-                  </h3>
+                  <h3 className="text-sm sm:text-lg font-semibold text-white">Skills</h3>
                 </div>
                 <div className="grid grid-cols-3 gap-2 mb-3">
                   {topSkills.map((skill, index) => (
@@ -472,15 +350,10 @@ export default function page() {
                       key={skill.name}
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      transition={{
-                        delay: !shouldShowIntro ? 0 : 0.6 + index * 0.1,
-                        duration: 0.3,
-                      }}
+                      transition={{ delay: !shouldShowIntro ? 0 : 0.6 + index * 0.1, duration: 0.3 }}
                       className="bg-slate-600 rounded-lg p-2 text-center hover:bg-slate-500 transition-colors"
                     >
-                      <span className="text-white text-sm font-medium">
-                        {skill.name}
-                      </span>
+                      <span className="text-white text-sm font-medium">{skill.name}</span>
                     </motion.div>
                   ))}
                 </div>
@@ -495,35 +368,23 @@ export default function page() {
 
               {/* Contact */}
               <motion.div
-                initial={{
-                  opacity: !shouldShowIntro ? 1 : 0,
-                  scale: !shouldShowIntro ? 1 : 0.8,
-                }}
+                initial={{ opacity: !shouldShowIntro ? 1 : 0, scale: !shouldShowIntro ? 1 : 0.8 }}
                 animate={{
                   opacity: bentoAnimationStage >= 2 ? 1 : 0,
                   scale: bentoAnimationStage >= 2 ? 1 : 0.8,
                 }}
-                transition={{
-                  delay: !shouldShowIntro ? 0 : 0.6,
-                  duration: 0.6,
-                }}
+                transition={{ delay: !shouldShowIntro ? 0 : 0.6, duration: 0.6 }}
                 className="col-span-4 row-span-2 bg-amber-600 rounded-xl sm:rounded-2xl p-3 sm:p-5 overflow-hidden"
               >
-                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-1">
-                  Let's Connect
-                </h3>
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-1">Let's Connect</h3>
                 <div className="space-y-1 sm:space-y-2 mb-3">
                   <div className="flex items-center gap-2">
                     <Mail className="w-3 h-3 sm:w-4 sm:h-4 text-amber-200" />
-                    <span className="text-amber-100 text-xs sm:text-base">
-                      porjeprajyot@gmail.com
-                    </span>
+                    <span className="text-amber-100 text-xs sm:text-base">porjeprajyot@gmail.com</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <MapPin className="w-3 h-3 sm:w-4 sm:h-4 text-amber-200" />
-                    <span className="text-amber-100 text-xs sm:text-base">
-                      Pune, Maharashtra, India
-                    </span>
+                    <span className="text-amber-100 text-xs sm:text-base">Pune, Maharashtra, India</span>
                   </div>
                 </div>
                 <button
@@ -537,36 +398,24 @@ export default function page() {
 
               {/* Projects Preview with Button */}
               <motion.div
-                initial={{
-                  opacity: !shouldShowIntro ? 1 : 0,
-                  x: !shouldShowIntro ? 0 : -50,
-                }}
+                initial={{ opacity: !shouldShowIntro ? 1 : 0, x: !shouldShowIntro ? 0 : -50 }}
                 animate={{
                   opacity: bentoAnimationStage >= 2 ? 1 : 0,
                   x: bentoAnimationStage >= 2 ? 0 : -50,
                 }}
-                transition={{
-                  delay: !shouldShowIntro ? 0 : 0.7,
-                  duration: 0.6,
-                }}
+                transition={{ delay: !shouldShowIntro ? 0 : 0.7, duration: 0.6 }}
                 className="col-span-4 row-span-2 bg-purple-700 rounded-xl sm:rounded-2xl p-3 sm:p-4 overflow-hidden"
               >
                 <div className="flex items-center gap-2 mb-2 sm:mb-1">
                   <Palette className="w-4 h-4 sm:w-5 sm:h-5 text-purple-200" />
-                  <h3 className="text-sm sm:text-lg font-semibold text-white">
-                    Projects
-                  </h3>
+                  <h3 className="text-sm sm:text-lg font-semibold text-white">Projects</h3>
                 </div>
                 <div className="mb-3">
                   <div className="bg-purple-800 rounded-lg p-3 mb-1">
                     <div className="flex items-center justify-between">
                       <div className="space-y">
-                        <p className="text-white text-xs sm:text-sm font-semibold">
-                          DevFlow: AI Website Builder
-                        </p>
-                        <p className="text-purple-200 text-xs">
-                          Next.js • TypeScript • Gemini • Clerk
-                        </p>
+                        <p className="text-white text-xs sm:text-sm font-semibold">DevFlow: AI Website Builder</p>
+                        <p className="text-purple-200 text-xs">Next.js • TypeScript • Gemini • Clerk</p>
                       </div>
                       <LinkPreview url="https://tailwindcss.com">
                         <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 text-purple-300" />
@@ -586,18 +435,12 @@ export default function page() {
               {/* Social Links */}
               <div className="col-span-1 row-span-1"></div>
               <motion.div
-                initial={{
-                  opacity: !shouldShowIntro ? 1 : 0,
-                  y: !shouldShowIntro ? 0 : 50,
-                }}
+                initial={{ opacity: !shouldShowIntro ? 1 : 0, y: !shouldShowIntro ? 0 : 50 }}
                 animate={{
                   opacity: bentoAnimationStage >= 2 ? 1 : 0,
                   y: bentoAnimationStage >= 2 ? 0 : 50,
                 }}
-                transition={{
-                  delay: !shouldShowIntro ? 0 : 0.8,
-                  duration: 0.6,
-                }}
+                transition={{ delay: !shouldShowIntro ? 0 : 0.8, duration: 0.6 }}
                 className="col-span-10 row-span-1 bg-slate-700 rounded-xl sm:rounded-2xl p-2 sm:p-4 flex items-center justify-between overflow-hidden"
               >
                 <div className="flex items-center gap-3 sm:gap-4">
@@ -645,5 +488,5 @@ export default function page() {
         <ProjectsShowcase />
       </motion.div>
     </div>
-  );
+  )
 }
