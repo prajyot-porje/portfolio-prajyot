@@ -155,45 +155,84 @@ export const skills = [
   },
 ];
 
+// export const introPages = [
+//   {
+//     id: 1,
+//     title: "FULL STACK",
+//     subtitle: "WEB DEVELOPER",
+//     description: "Hey, I'm Prajyot — Building Scalable Web Apps",
+//     bgColor: "bg-slate-900",
+//     textColor: "text-white",
+//     accentColor: "text-slate-300",
+//   },
+//   {
+//     id: 2,
+//     title: "CODE",
+//     subtitle: "CRAFTSMAN",
+//     description: "Shaping Ideas into Web Experiences",
+//     bgColor: "bg-blue-600",
+//     textColor: "text-white",
+//     accentColor: "text-blue-200",
+//   },
+//   {
+//     id: 3,
+//     title: "FRONTEND",
+//     subtitle: "EXPERT",
+//     description: "Building Modern Solutions",
+//     bgColor: "bg-red-500",
+//     textColor: "text-white",
+//     accentColor: "text-red-200",
+//   },
+//   {
+//     id: 4,
+//     title: "DSA",
+//     subtitle: "ENTHUSIAST",
+//     description: "Optimizing Logic with C++ Problem Solving",
+//     bgColor: "bg-purple-500",
+//     textColor: "text-white",
+//     accentColor: "text-purple-300",
+//   },
+// ]
+// constants/index.ts
 export const introPages = [
   {
     id: 1,
     title: "FULL STACK",
     subtitle: "WEB DEVELOPER",
     description: "Hey, I'm Prajyot — Building Scalable Web Apps",
-    bgColor: "bg-slate-900",
+    bgColor: "bg-gradient-to-br from-slate-900 via-slate-900 to-slate-900",
     textColor: "text-white",
-    accentColor: "text-slate-300",
+    accentColor: "text-slate-300"
   },
   {
     id: 2,
     title: "CODE",
     subtitle: "CRAFTSMAN",
     description: "Shaping Ideas into Web Experiences",
-    bgColor: "bg-blue-600",
+    bgColor: "bg-gradient-to-br from-blue-600 via-blue-600 to-blue-600",
     textColor: "text-white",
-    accentColor: "text-blue-200",
+    accentColor: "text-blue-300"
   },
+  
   {
     id: 3,
     title: "FRONTEND",
     subtitle: "EXPERT",
     description: "Building Modern Solutions",
-    bgColor: "bg-red-500",
-    textColor: "text-white",
-    accentColor: "text-red-200",
+    bgColor: "bg-gradient-to-br from-emerald-600 via-emerald-600 to-emerald-600",
+    textColor: "text-white", 
+    accentColor: "text-emerald-200"
   },
   {
     id: 4,
     title: "DSA",
     subtitle: "ENTHUSIAST",
     description: "Optimizing Logic with C++ Problem Solving",
-    bgColor: "bg-purple-600",
+    bgColor: "bg-gradient-to-br from-purple-500 via-purple-500 to-purple-600",
     textColor: "text-white",
-    accentColor: "text-purple-200",
-  },
-]
-
+    accentColor: "text-purple-300"
+  }
+];
 export const projectsData = [
   {
     id: 1,

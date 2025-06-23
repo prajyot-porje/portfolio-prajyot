@@ -1,62 +1,59 @@
-import type { Config } from "tailwindcss";
+import type { Config } from "tailwindcss"
 
-export default {
-    darkMode: ["class"],
-    content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+const config: Config = {
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
   ],
+  safelist: [
+   // Background gradients
+   'bg-gradient-to-br',
+   'from-purple-900',
+   'via-blue-900', 
+   'to-indigo-900',
+   'from-emerald-600',
+   'via-emerald-600',
+   'to-emerald-600',
+   'from-orange-900',
+   'via-red-900',
+   'to-pink-900',
+   'from-slate-900',
+   'via-gray-900',
+   'to-zinc-900',
+   // Text colors
+   'text-white',
+   'text-gray-100',
+   'text-slate-300',
+   'text-blue-300',
+   'text-purple-300',
+   'text-emerald-200',
+   'text-orange-300',
+   'text-slate-300',
+   // Font weights and transforms
+   'font-black',
+   'font-light',
+   'tracking-tighter',
+   'tracking-wider',
+   'transform',
+   '-skew-y-2',
+   'skew-y-1',
+   // Text sizes
+   'text-6xl',
+   'text-8xl',
+   'text-9xl',
+   'text-4xl',
+   'text-6xl',
+   'text-7xl',
+   'text-lg',
+   // Responsive variants
+   'sm:text-8xl',
+   'md:text-9xl',
+   'sm:text-6xl',
+   'md:text-7xl',
+ ],
   theme: {
-  	extend: {
-  		colors: {
-  			background: 'hsl(var(--background))',
-  			foreground: 'hsl(var(--foreground))',
-  			card: {
-  				DEFAULT: 'hsl(var(--card))',
-  				foreground: 'hsl(var(--card-foreground))'
-  			},
-  			popover: {
-  				DEFAULT: 'hsl(var(--popover))',
-  				foreground: 'hsl(var(--popover-foreground))'
-  			},
-  			primary: {
-  				DEFAULT: 'hsl(var(--primary))',
-  				foreground: 'hsl(var(--primary-foreground))'
-  			},
-  			secondary: {
-  				DEFAULT: 'hsl(var(--secondary))',
-  				foreground: 'hsl(var(--secondary-foreground))'
-  			},
-  			muted: {
-  				DEFAULT: 'hsl(var(--muted))',
-  				foreground: 'hsl(var(--muted-foreground))'
-  			},
-  			accent: {
-  				DEFAULT: 'hsl(var(--accent))',
-  				foreground: 'hsl(var(--accent-foreground))'
-  			},
-  			destructive: {
-  				DEFAULT: 'hsl(var(--destructive))',
-  				foreground: 'hsl(var(--destructive-foreground))'
-  			},
-  			border: 'hsl(var(--border))',
-  			input: 'hsl(var(--input))',
-  			ring: 'hsl(var(--ring))',
-  			chart: {
-  				'1': 'hsl(var(--chart-1))',
-  				'2': 'hsl(var(--chart-2))',
-  				'3': 'hsl(var(--chart-3))',
-  				'4': 'hsl(var(--chart-4))',
-  				'5': 'hsl(var(--chart-5))'
-  			}
-  		},
-  		borderRadius: {
-  			lg: 'var(--radius)',
-  			md: 'calc(var(--radius) - 2px)',
-  			sm: 'calc(var(--radius) - 4px)'
-  		}
-  	}
+    extend: {},
   },
-  plugins: [require("tailwindcss-animate")],
-} satisfies Config;
+  plugins: [],
+}
+export default config

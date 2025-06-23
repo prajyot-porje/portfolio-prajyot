@@ -93,6 +93,18 @@ body {
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
+@layer utilities {
+  .border-border {
+    border-color: hsl(var(--border));
+  }
+  .bg-background {
+    background-color: hsl(var(--background));
+  }
+
+  .text-foreground {
+    color: hsl(var(--foreground));
+  }
+}
 
 * {
   box-sizing: border-box;
