@@ -31,10 +31,12 @@ const config: Config = {
    "text-blue-200",
     "text-red-200",
     "text-purple-200",
+    'bg-emerald-600',
    "bg-slate-900",
    "bg-purple-600",
    "bg-blue-600",
    "bg-red-500",
+   'bg-amber-600',
    // Font weights and transforms
    'font-black',
    'font-light',

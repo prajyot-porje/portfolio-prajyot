@@ -3,6 +3,7 @@
 export const skills = [
   {
     title: "Frameworks and Libraries",
+    
     items: [
       {
         name: "Next JS",
@@ -233,7 +234,7 @@ export const projectsData = [
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Stream", "clerk"],
     image: "/nexmeet.png",
     github: "https://github.com/prajyot-porje/NexMeet",
-    live: "prajyot-nexmeet.vercel.app/",
+    live: "https://prajyot-nexmeet.vercel.app/",
     year: "2024",
     status: "Production",
     metrics: {
@@ -268,7 +269,7 @@ export const projectsData = [
     metrics: {
       users: "15 (Test users)",
       satisfaction: "N/A (To Be Collected)",
-      performance: "A (Based on internal tests)",
+      performance: "A (Internal tests)",
     },
     color: {
       primary: "#8B5CF6",
@@ -290,7 +291,7 @@ export const projectsData = [
     metrics: {
       users: "12 (Test users)",
       satisfaction: "N/A (To Be Collected)",
-      performance: "B+ (Based on internal tests)",
+      performance: "B+ (Internal tests)",
     },
     color: {
       primary: "#F59E0B",

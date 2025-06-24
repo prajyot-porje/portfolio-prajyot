@@ -1,10 +1,15 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState, useEffect, useRef } from "react"
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
-import { LinkPreview } from "@/components/ui/link-preview"
+import { useState, useEffect, useRef } from "react";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import { LinkPreview } from "@/components/ui/link-preview";
 import {
   Mail,
   Github,
@@ -17,139 +22,100 @@ import {
   Palette,
   ExternalLink,
   Download,
-} from "lucide-react"
-import Image from "next/image"
-import { TbBrandLeetcode } from "react-icons/tb"
-import SkillsSection from "@/components/custom/Skills"
-import ProjectsShowcase from "@/components/custom/Projects"
-import { introPages } from "@/constants"
-
-
+} from "lucide-react";
+import Image from "next/image";
+import { TbBrandLeetcode } from "react-icons/tb";
+import SkillsSection from "@/components/custom/Skills";
+import ProjectsShowcase from "@/components/custom/Projects";
+import { introPages } from "@/constants";
 
 const pageVariants = {
   exit: (custom: number) => {
     const exitAnimations = [
       { x: -window.innerWidth, y: -200, rotate: -15, scale: 0.8 },
-      { x: window.innerWidth, y: 200, rotate: 25, scale: 0.9 },
-      { x: -window.innerWidth, y: 300, rotate: -20, scale: 0.7 },
+      { x: 400, y: window.innerHeight, rotate: 25, scale: 0.6 },
       { x: window.innerWidth, y: -300, rotate: 30, scale: 0.8 },
-    ]
-    return exitAnimations[custom] || exitAnimations[0]
+      { x: 400, y: -window.innerHeight, rotate: -20, scale: 0.6 },
+    ];
+    return exitAnimations[custom] || exitAnimations[0];
   },
-}
+};
 
 const topSkills = [
   { name: "Next.js", img: "/assets/nextjs.svg" },
   { name: "TypeScript", img: "/assets/typescriptlang.svg" },
   { name: "Node.js", img: "/assets/nodejs.svg" },
-]
-
-const projects = [
-  {
-    title: "DevFlow: AI Website Builder",
-    description:
-      "An AI-powered website builder that generates responsive websites from simple prompts using advanced machine learning algorithms.",
-    tech: ["Next.js", "TypeScript", "Gemini AI", "Clerk", "Tailwind CSS"],
-    image: "/assets/projects/devflow-screenshot",
-    github: "https://github.com/prajyot-porje/devflow",
-    live: "https://devflow-ai.vercel.app",
-    featured: true,
-  },
-  {
-    title: "E-Commerce Platform",
-    description: "Full-stack e-commerce solution with payment integration, inventory management, and admin dashboard.",
-    tech: ["React", "Node.js", "MongoDB", "Stripe", "Express"],
-    image: "/assets/projects/ecommerce-screenshot",
-    github: "https://github.com/prajyot-porje/ecommerce",
-    live: "https://ecommerce-demo.vercel.app",
-    featured: false,
-  },
-  {
-    title: "Task Management App",
-    description: "Collaborative task management application with real-time updates and team collaboration features.",
-    tech: ["Vue.js", "Firebase", "Vuetify", "PWA"],
-    image: "/assets/projects/taskmanager-screenshot",
-    github: "https://github.com/prajyot-porje/taskmanager",
-    live: "https://taskmanager-demo.vercel.app",
-    featured: false,
-  },
-  {
-    title: "Weather Dashboard",
-    description:
-      "Interactive weather dashboard with location-based forecasts and historical weather data visualization.",
-    tech: ["React", "Chart.js", "OpenWeather API", "Geolocation"],
-    image: "/assets/projects/weather-dashboard-screenshot",
-    github: "https://github.com/prajyot-porje/weather-dashboard",
-    live: "https://weather-dashboard-demo.vercel.app",
-    featured: false,
-  },
-]
+];
 
 export default function page() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const skillsRef = useRef<HTMLDivElement>(null)
-  const projectsRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null);
+  const skillsRef = useRef<HTMLDivElement>(null);
+  const projectsRef = useRef<HTMLDivElement>(null);
 
-  const [currentPage, setCurrentPage] = useState(0)
-  const [showBento, setShowBento] = useState(false)
-  const [bentoAnimationStage, setBentoAnimationStage] = useState(0)
-  const [shouldShowIntro, setShouldShowIntro] = useState(true)
+  const [currentPage, setCurrentPage] = useState(0);
+  const [showBento, setShowBento] = useState(false);
+  const [bentoAnimationStage, setBentoAnimationStage] = useState(0);
+  const [shouldShowIntro, setShouldShowIntro] = useState(true);
 
   // Scroll-based animations
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
-  })
+  });
 
-  const bentoY = useTransform(scrollYProgress, [0, 1], [0, -100])
-  const bentoScale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.95, 0.9])
-  const bentoOpacity = useTransform(scrollYProgress, [0, 0.8, 1], [1, 0.8, 0.6])
+  const bentoY = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const bentoScale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.95, 0.9]);
+  const bentoOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.8, 1],
+    [1, 0.8, 0.6]
+  );
 
   useEffect(() => {
     // Simple intro logic - always show intro on first load
-    setShouldShowIntro(true)
-  }, [])
+    setShouldShowIntro(true);
+  }, []);
 
   useEffect(() => {
     if (shouldShowIntro) {
       if (currentPage < introPages.length) {
         const timer = setTimeout(() => {
-          setCurrentPage((prev) => prev + 1)
-        }, 2000)
-        return () => clearTimeout(timer)
+          setCurrentPage((prev) => prev + 1);
+        }, 2000);
+        return () => clearTimeout(timer);
       } else {
         const timer = setTimeout(() => {
-          setShowBento(true)
-          setTimeout(() => setBentoAnimationStage(1), 500)
-          setTimeout(() => setBentoAnimationStage(2), 2000)
-        }, 1000)
-        return () => clearTimeout(timer)
+          setShowBento(true);
+          setTimeout(() => setBentoAnimationStage(1), 500);
+          setTimeout(() => setBentoAnimationStage(2), 2000);
+        }, 1000);
+        return () => clearTimeout(timer);
       }
     }
-  }, [currentPage, shouldShowIntro])
+  }, [currentPage, shouldShowIntro]);
 
   const handleDownloadResume = () => {
-    const link = document.createElement("a")
-    link.href = "/resume.pdf"
-    link.download = "Prajyot_Porje_Resume.pdf"
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-  }
+    const link = document.createElement("a");
+    link.href = "/resume.pdf";
+    link.download = "Prajyot_Porje_Resume.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   const scrollToSection = (ref: React.RefObject<HTMLDivElement | null>) => {
-    ref.current?.scrollIntoView({ behavior: "smooth" })
-  }
+    ref.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const handleSkillsNavigation = () => {
-    sessionStorage.setItem("skipIntro", "true")
-    scrollToSection(skillsRef)
-  }
+    sessionStorage.setItem("skipIntro", "true");
+    scrollToSection(skillsRef);
+  };
 
   const handleProjectsNavigation = () => {
-    sessionStorage.setItem("skipIntro", "true")
-    scrollToSection(projectsRef)
-  }
+    sessionStorage.setItem("skipIntro", "true");
+    scrollToSection(projectsRef);
+  };
 
   if (shouldShowIntro && !showBento) {
     return (
@@ -172,7 +138,11 @@ export default function page() {
                 style={{ zIndex: introPages.length - index }}
               >
                 <div className="text-center relative z-10 px-4">
-                  <p className={`${page.accentColor} text-lg mb-8 font-light tracking-wider`}>{page.description}</p>
+                  <p
+                    className={`${page.accentColor} text-lg mb-8 font-light tracking-wider`}
+                  >
+                    {page.description}
+                  </p>
                   <div className="space-y-4">
                     <h1
                       className={`text-6xl sm:text-8xl md:text-9xl font-black ${page.textColor} tracking-tighter transform -skew-y-2`}
@@ -191,7 +161,7 @@ export default function page() {
           </AnimatePresence>
         ))}
       </div>
-    )
+    );
   }
 
   return (
@@ -215,17 +185,27 @@ export default function page() {
             >
               {/* Header */}
               <motion.div
-                initial={{ opacity: !shouldShowIntro ? 1 : 0, y: !shouldShowIntro ? 0 : -50 }}
+                initial={{
+                  opacity: !shouldShowIntro ? 1 : 0,
+                  y: !shouldShowIntro ? 0 : -50,
+                }}
                 animate={{
                   opacity: bentoAnimationStage >= 2 ? 1 : 0,
                   y: bentoAnimationStage >= 2 ? 0 : -50,
                 }}
-                transition={{ delay: !shouldShowIntro ? 0 : 0.1, duration: 0.6 }}
+                transition={{
+                  delay: !shouldShowIntro ? 0 : 0.1,
+                  duration: 0.6,
+                }}
                 className="col-span-12 row-span-1 bg-emerald-800 rounded-xl sm:rounded-2xl p-3 sm:p-6 flex items-center justify-between overflow-hidden"
               >
                 <div>
-                  <h1 className="text-lg sm:text-2xl font-bold text-white">Prajyot Porje</h1>
-                  <p className="text-emerald-200 text-sm">Full Stack Developer & ML Engineer</p>
+                  <h1 className="text-lg sm:text-2xl font-bold text-white">
+                    Prajyot Porje
+                  </h1>
+                  <p className="text-emerald-200 text-sm">
+                    Full Stack Developer & ML Engineer
+                  </p>
                 </div>
                 <div className="flex gap-2 sm:gap-3">
                   <div className="w-2 h-2 sm:w-3 sm:h-3 bg-red-400 rounded-full"></div>
@@ -236,24 +216,34 @@ export default function page() {
 
               {/* Main Quote */}
               <motion.div
-                initial={{ opacity: !shouldShowIntro ? 1 : 0, x: !shouldShowIntro ? 0 : -50 }}
+                initial={{
+                  opacity: !shouldShowIntro ? 1 : 0,
+                  x: !shouldShowIntro ? 0 : -50,
+                }}
                 animate={{
                   opacity: bentoAnimationStage >= 2 ? 1 : 0,
                   x: bentoAnimationStage >= 2 ? 0 : -50,
                 }}
-                transition={{ delay: !shouldShowIntro ? 0 : 0.2, duration: 0.6 }}
+                transition={{
+                  delay: !shouldShowIntro ? 0 : 0.2,
+                  duration: 0.6,
+                }}
                 className="col-span-5 row-span-3 bg-emerald-700 rounded-xl sm:rounded-2xl p-4 sm:p-8 flex flex-col justify-center overflow-hidden"
               >
                 <h2 className="text-xl sm:text-3xl font-light text-white leading-tight mb-2 sm:mb-4">
                   Crafting digital experiences through
-                  <span className="font-bold text-emerald-200"> innovative design</span>
+                  <span className="font-bold text-emerald-200">
+                    {" "}
+                    innovative design
+                  </span>
                 </h2>
                 <p className="text-emerald-300 text-xs sm:text-sm">
-                  Blending creativity with technology to build meaningful solutions
+                  Blending creativity with technology to build meaningful
+                  solutions
                 </p>
               </motion.div>
 
-              {/* Profile Photo */}
+              {/* Profile  */}
               <motion.div
                 initial={
                   !shouldShowIntro
@@ -280,7 +270,7 @@ export default function page() {
                 }}
                 onAnimationComplete={() => {
                   if (shouldShowIntro && bentoAnimationStage === 1) {
-                    setTimeout(() => setBentoAnimationStage(2), 100)
+                    setTimeout(() => setBentoAnimationStage(2), 100);
                   }
                 }}
                 className="col-span-3 row-span-3 bg-[#faf9f9] rounded-xl sm:rounded-2xl overflow-hidden"
@@ -296,53 +286,152 @@ export default function page() {
 
               {/* Education */}
               <motion.div
-                initial={{ opacity: !shouldShowIntro ? 1 : 0, x: !shouldShowIntro ? 0 : 50 }}
+                initial={{
+                  opacity: !shouldShowIntro ? 1 : 0,
+                  x: !shouldShowIntro ? 0 : 50,
+                }}
                 animate={{
                   opacity: bentoAnimationStage >= 2 ? 1 : 0,
                   x: bentoAnimationStage >= 2 ? 0 : 50,
                 }}
-                transition={{ delay: !shouldShowIntro ? 0 : 0.4, duration: 0.6 }}
-                className="col-span-4 row-span-3 bg-teal-600 rounded-xl sm:rounded-2xl p-3 sm:p-6 overflow-hidden"
+                transition={{
+                  delay: !shouldShowIntro ? 0 : 0.4,
+                  duration: 0.6,
+                }}
+                className="col-span-4 row-span-2 bg-gradient-to-br from-teal-600 to-teal-700 rounded-xl sm:rounded-2xl p-4 sm:p-3 sm:px-4 overflow-hidden relative"
               >
-                <div className="flex items-center gap-2 mb-2 sm:mb-3">
-                  <GraduationCap className="w-4 h-4 sm:w-5 sm:h-5 text-teal-200" />
-                  <h3 className="text-sm sm:text-lg font-semibold text-white">Education</h3>
+                {/* Subtle background pattern */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-white rounded-full -translate-y-16 translate-x-16" />
+                  <div className="absolute bottom-0 left-0 w-24 h-24 bg-white rounded-full translate-y-12 -translate-x-12" />
                 </div>
-                <div className="space-y-3 sm:space-y-3">
-                  <div className="bg-teal-700 rounded-lg p-3">
-                    <div className="flex items-center gap-2 mb-1">
-                      <GraduationCap className="w-3 h-3 sm:w-4 sm:h-4 text-teal-200" />
-                      <span className="text-teal-100 text-xs sm:text-sm font-medium">Bachelor of Engineering</span>
+
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="p-2 bg-teal-500/30 rounded-lg backdrop-blur-sm">
+                      <GraduationCap className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                     </div>
-                    <p className="text-white text-xs sm:text-sm font-semibold">
-                      Artificial Intelligence & Machine Learning
-                    </p>
-                    <p className="text-teal-200 text-xs">PES Modern College Of Engineering, Pune • 2023-2027</p>
+                    <h3 className="text-lg sm:text-xl font-bold text-white">
+                      Education
+                    </h3>
                   </div>
-                  <div className="bg-teal-700 rounded-lg p-3">
-                    <div className="flex items-center gap-2 mb-1">
-                      <School className="w-3 h-3 sm:w-4 sm:h-4 text-teal-200" />
-                      <span className="text-teal-100 text-xs sm:text-sm font-medium">Higher Secondary Education</span>
+
+                  <div className="space-y-4">
+                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-2 px-4 border border-white/20">
+                      <div className="flex items-start justify-between mb-1">
+                        <div className="flex items-center gap-2">
+                          <h4 className="text-white text-base sm:text-lg font-bold ">
+                            Bachelor of Engineering
+                          </h4>
+                        </div>
+                          <span className="text-teal-100 text-sm font-medium">
+                            2023 - 2027
+                          </span>
+                      </div>
+                      <p className="text-teal-100 text-sm font-medium mb-1">
+                        Artificial Intelligence & Machine Learning
+                      </p>
+                      <p className="text-teal-200 text-xs">
+                        PES Modern College Of Engineering, Pune
+                      </p>
                     </div>
-                    <p className="text-white text-xs sm:text-sm font-semibold">Science & Technology</p>
-                    <p className="text-teal-200 text-xs">SVKT College, Nashik • 2021-2023</p>
                   </div>
                 </div>
               </motion.div>
 
-              {/* Skills Preview with Button */}
+              {/* Projects */}
               <motion.div
-                initial={{ opacity: !shouldShowIntro ? 1 : 0, y: !shouldShowIntro ? 0 : 50 }}
+                initial={{
+                  opacity: !shouldShowIntro ? 1 : 0,
+                  x: !shouldShowIntro ? 0 : -50,
+                }}
+                animate={{
+                  opacity: bentoAnimationStage >= 2 ? 1 : 0,
+                  x: bentoAnimationStage >= 2 ? 0 : -50,
+                }}
+                transition={{
+                  delay: !shouldShowIntro ? 0 : 0.7,
+                  duration: 0.6,
+                }}
+                className="col-span-4 row-span-3 bg-gradient-to-br from-purple-700 to-purple-800 rounded-xl sm:rounded-2xl p-4 sm:p-4 overflow- relative"
+              >
+                {/* Subtle background pattern */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="absolute top-0 left-0 w-28 h-28 bg-white rounded-full -translate-y-14 -translate-x-14" />
+                  <div className="absolute bottom-0 right-0 w-20 h-20 bg-white rounded-full translate-y-10 translate-x-10" />
+                </div>
+
+                <div className="relative z-10 h-full flex flex-col">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="p-2 bg-purple-600/30 rounded-lg backdrop-blur-sm">
+                      <Palette className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                    </div>
+                    <h3 className="text-lg sm:text-xl font-bold text-white">
+                      Featured Project
+                    </h3>
+                  </div>
+
+                  <div className="flex-1">
+                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 mb-2">
+                      <div className="flex items-start justify-between mb-3">
+                        <div className="flex-1">
+                          <h4 className="text-white text-base sm:text-lg font-bold mb-1">
+                            DevFlow: AI Website Builder
+                          </h4>
+                          <div className="flex flex-wrap gap-2 mb-1">
+                            {["Next.js", "TypeScript", "Gemini", "Clerk"].map(
+                              (tech) => (
+                                <span
+                                  key={tech}
+                                  className="px-2 py-1 bg-purple-600/40 text-purple-100 text-xs rounded-md font-medium"
+                                >
+                                  {tech}
+                                </span>
+                              )
+                            )}
+                          </div>
+                        </div>
+                        <LinkPreview url="https://github.com/prajyot-porje" className="p-2 bg-purple-600/30 rounded-lg backdrop-blur-sm hover:bg-purple-600/50 transition-colors">
+                          <ExternalLink className="w-4 h-4 text-purple-200" />
+                        </LinkPreview>
+                      </div>
+                      <p className="text-purple-200 text-sm leading-relaxed">
+                        AI-powered website builder with intelligent design
+                      </p>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={handleProjectsNavigation}
+                    className="flex items-center justify-center gap-2 text-purple-200 hover:text-white text-sm group transition-all duration-200 w-full bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-xl py-3 border border-white/20 hover:border-white/30"
+                  >
+                    <span className="font-medium">View All Projects</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </div>
+              </motion.div>
+
+              {/* Skills  */}
+              <motion.div
+                initial={{
+                  opacity: !shouldShowIntro ? 1 : 0,
+                  y: !shouldShowIntro ? 0 : 50,
+                }}
                 animate={{
                   opacity: bentoAnimationStage >= 2 ? 1 : 0,
                   y: bentoAnimationStage >= 2 ? 0 : 50,
                 }}
-                transition={{ delay: !shouldShowIntro ? 0 : 0.5, duration: 0.6 }}
+                transition={{
+                  delay: !shouldShowIntro ? 0 : 0.5,
+                  duration: 0.6,
+                }}
                 className="col-span-4 row-span-2 bg-slate-800 rounded-xl sm:rounded-2xl p-3 sm:p-6 overflow-hidden"
               >
                 <div className="flex items-center gap-2 mb-2 sm:mb-4">
                   <Code2 className="w-4 h-4 sm:w-5 sm:h-5 text-slate-300" />
-                  <h3 className="text-sm sm:text-lg font-semibold text-white">Skills</h3>
+                  <h3 className="text-sm sm:text-lg font-semibold text-white">
+                    Skills
+                  </h3>
                 </div>
                 <div className="grid grid-cols-3 gap-2 mb-3">
                   {topSkills.map((skill, index) => (
@@ -350,10 +439,15 @@ export default function page() {
                       key={skill.name}
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: !shouldShowIntro ? 0 : 0.6 + index * 0.1, duration: 0.3 }}
+                      transition={{
+                        delay: !shouldShowIntro ? 0 : 0.6 + index * 0.1,
+                        duration: 0.3,
+                      }}
                       className="bg-slate-600 rounded-lg p-2 text-center hover:bg-slate-500 transition-colors"
                     >
-                      <span className="text-white text-sm font-medium">{skill.name}</span>
+                      <span className="text-white text-sm font-medium">
+                        {skill.name}
+                      </span>
                     </motion.div>
                   ))}
                 </div>
@@ -368,23 +462,35 @@ export default function page() {
 
               {/* Contact */}
               <motion.div
-                initial={{ opacity: !shouldShowIntro ? 1 : 0, scale: !shouldShowIntro ? 1 : 0.8 }}
+                initial={{
+                  opacity: !shouldShowIntro ? 1 : 0,
+                  scale: !shouldShowIntro ? 1 : 0.8,
+                }}
                 animate={{
                   opacity: bentoAnimationStage >= 2 ? 1 : 0,
                   scale: bentoAnimationStage >= 2 ? 1 : 0.8,
                 }}
-                transition={{ delay: !shouldShowIntro ? 0 : 0.6, duration: 0.6 }}
+                transition={{
+                  delay: !shouldShowIntro ? 0 : 0.6,
+                  duration: 0.6,
+                }}
                 className="col-span-4 row-span-2 bg-amber-600 rounded-xl sm:rounded-2xl p-3 sm:p-5 overflow-hidden"
               >
-                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-1">Let's Connect</h3>
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-1">
+                  Let's Connect
+                </h3>
                 <div className="space-y-1 sm:space-y-2 mb-3">
                   <div className="flex items-center gap-2">
                     <Mail className="w-3 h-3 sm:w-4 sm:h-4 text-amber-200" />
-                    <span className="text-amber-100 text-xs sm:text-base">porjeprajyot@gmail.com</span>
+                    <span className="text-amber-100 text-xs sm:text-base">
+                      porjeprajyot@gmail.com
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <MapPin className="w-3 h-3 sm:w-4 sm:h-4 text-amber-200" />
-                    <span className="text-amber-100 text-xs sm:text-base">Pune, Maharashtra, India</span>
+                    <span className="text-amber-100 text-xs sm:text-base">
+                      Pune, Maharashtra, India
+                    </span>
                   </div>
                 </div>
                 <button
@@ -396,51 +502,21 @@ export default function page() {
                 </button>
               </motion.div>
 
-              {/* Projects Preview with Button */}
-              <motion.div
-                initial={{ opacity: !shouldShowIntro ? 1 : 0, x: !shouldShowIntro ? 0 : -50 }}
-                animate={{
-                  opacity: bentoAnimationStage >= 2 ? 1 : 0,
-                  x: bentoAnimationStage >= 2 ? 0 : -50,
-                }}
-                transition={{ delay: !shouldShowIntro ? 0 : 0.7, duration: 0.6 }}
-                className="col-span-4 row-span-2 bg-purple-700 rounded-xl sm:rounded-2xl p-3 sm:p-4 overflow-hidden"
-              >
-                <div className="flex items-center gap-2 mb-2 sm:mb-1">
-                  <Palette className="w-4 h-4 sm:w-5 sm:h-5 text-purple-200" />
-                  <h3 className="text-sm sm:text-lg font-semibold text-white">Projects</h3>
-                </div>
-                <div className="mb-3">
-                  <div className="bg-purple-800 rounded-lg p-3 mb-1">
-                    <div className="flex items-center justify-between">
-                      <div className="space-y">
-                        <p className="text-white text-xs sm:text-sm font-semibold">DevFlow: AI Website Builder</p>
-                        <p className="text-purple-200 text-xs">Next.js • TypeScript • Gemini • Clerk</p>
-                      </div>
-                      <LinkPreview url="https://tailwindcss.com">
-                        <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 text-purple-300" />
-                      </LinkPreview>
-                    </div>
-                  </div>
-                </div>
-                <button
-                  onClick={handleProjectsNavigation}
-                  className="flex items-center gap-1 text-purple-200 hover:text-white text-xs sm:text-sm group transition-colors w-full justify-center bg-purple-800 hover:bg-purple-900 rounded-lg py-2"
-                >
-                  <span>View More Projects</span>
-                  <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </motion.div>
-
               {/* Social Links */}
               <div className="col-span-1 row-span-1"></div>
               <motion.div
-                initial={{ opacity: !shouldShowIntro ? 1 : 0, y: !shouldShowIntro ? 0 : 50 }}
+                initial={{
+                  opacity: !shouldShowIntro ? 1 : 0,
+                  y: !shouldShowIntro ? 0 : 50,
+                }}
                 animate={{
                   opacity: bentoAnimationStage >= 2 ? 1 : 0,
                   y: bentoAnimationStage >= 2 ? 0 : 50,
                 }}
-                transition={{ delay: !shouldShowIntro ? 0 : 0.8, duration: 0.6 }}
+                transition={{
+                  delay: !shouldShowIntro ? 0 : 0.8,
+                  duration: 0.6,
+                }}
                 className="col-span-10 row-span-1 bg-slate-700 rounded-xl sm:rounded-2xl p-2 sm:p-4 flex items-center justify-between overflow-hidden"
               >
                 <div className="flex items-center gap-3 sm:gap-4">
@@ -488,5 +564,5 @@ export default function page() {
         <ProjectsShowcase />
       </motion.div>
     </div>
-  )
+  );
 }

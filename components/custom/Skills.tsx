@@ -15,37 +15,37 @@ const skills = [
       {
         name: "Next JS",
         desc: "React Framework",
-        icon: "/placeholder.svg?height=24&width=24",
+        icon: "/assets/nextjs.svg",
         className: "invert-dark",
       },
       {
         name: "React JS",
         desc: "JavaScript library",
-        icon: "/placeholder.svg?height=24&width=24",
+        icon: "/assets/reactjs.svg",
         className: "",
       },
       {
         name: "Node JS",
         desc: "JavaScript runtime",
-        icon: "/placeholder.svg?height=24&width=24",
+        icon: "/assets/nodejs.svg",
         className: "",
       },
       {
         name: "Express JS",
         desc: "Node Framework",
-        icon: "/placeholder.svg?height=24&width=24",
+        icon: "/assets/expressjs.svg",
         className: "invert-dark",
       },
       {
         name: "Tailwind CSS",
         desc: "Utility-first CSS framework",
-        icon: "/placeholder.svg?height=24&width=24",
+        icon: "/assets/tailwindcss.svg",
         className: "",
       },
       {
         name: "Framer Motion",
         desc: "Animation library",
-        icon: "/placeholder.svg?height=24&width=24",
+        icon: "/assets/framer-motion.svg",
         className: "",
       },
     ],
@@ -58,43 +58,43 @@ const skills = [
       {
         name: "JavaScript",
         desc: "Programming language",
-        icon: "/placeholder.svg?height=24&width=24",
+        icon: "/assets/javascript.svg",
         className: "rounded-md",
       },
       {
         name: "TypeScript",
         desc: "Programming language",
-        icon: "/placeholder.svg?height=24&width=24",
+        icon: "/assets/typescriptlang.svg",
         className: "",
       },
       {
         name: "Python",
         desc: "Programming language",
-        icon: "/placeholder.svg?height=24&width=24",
+        icon: "/assets/python.svg",
         className: "",
       },
       {
         name: "C++",
         desc: "Programming language",
-        icon: "/placeholder.svg?height=24&width=24",
+        icon: "/assets/cpp.svg",
         className: "skill-cpp",
       },
       {
         name: "C",
         desc: "Programming language",
-        icon: "/placeholder.svg?height=24&width=24",
+        icon: "/assets/c.svg",
         className: "",
       },
       {
         name: "HTML",
         desc: "Markup language",
-        icon: "/placeholder.svg?height=24&width=24",
+        icon: "/assets/html.svg",
         className: "",
       },
       {
         name: "CSS",
         desc: "Styling language",
-        icon: "/placeholder.svg?height=24&width=24",
+        icon: "/assets/CSS.svg",
         className: "",
       },
     ],
@@ -107,25 +107,25 @@ const skills = [
       {
         name: "MongoDB",
         desc: "NoSQL database",
-        icon: "/placeholder.svg?height=24&width=24",
+        icon: "/assets/mongodb.svg",
         className: "",
       },
       {
         name: "PostgreSQL",
         desc: "SQL database",
-        icon: "/placeholder.svg?height=24&width=24",
+        icon: "/assets/postgresql.svg",
         className: "",
       },
       {
         name: "Neon PostgresSQL",
         desc: "PostgreSQL ORM",
-        icon: "/placeholder.svg?height=24&width=24",
+        icon: "/assets/neon.svg",
         className: "",
       },
       {
         name: "Drizzle",
         desc: "PostgreSQL ORM",
-        icon: "/placeholder.svg?height=24&width=24",
+        icon: "/assets/drizzle.svg",
         className: "invert-dark",
       },
     ],
@@ -138,31 +138,31 @@ const skills = [
       {
         name: "Git",
         desc: "Version control system",
-        icon: "/placeholder.svg?height=24&width=24",
+        icon: "/assets/git.svg",
         className: "",
       },
       {
         name: "GitHub",
         desc: "Code hosting platform",
-        icon: "/placeholder.svg?height=24&width=24",
+        icon: "/assets/github.svg",
         className: "invert-dark",
       },
       {
         name: "VS Code",
         desc: "Code editor",
-        icon: "/placeholder.svg?height=24&width=24",
+        icon: "/assets/vscode.svg",
         className: "",
       },
       {
         name: "Figma",
         desc: "Design tool",
-        icon: "/placeholder.svg?height=24&width=24",
+        icon: "/assets/figma.svg",
         className: "",
       },
       {
         name: "Clerk",
         desc: "Authentication tool",
-        icon: "/placeholder.svg?height=24&width=24",
+        icon: "/assets/clerk.svg",
         className: "rounded-lg",
       },
     ],
@@ -194,11 +194,11 @@ export default function SkillsSection() {
   return (
     <section
       ref={containerRef}
-      className="relative py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900"
+      className="relative py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-white to-slate-100 "
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-800 bg-[size:20px_20px] opacity-50" />
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent dark:via-slate-900/50" />
+      <div className="absolute inset-0 bg-grid-slate-100  bg-[size:20px_20px] opacity-50" />
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent " />
 
       <div className="relative max-w-7xl mx-auto">
         {/* Header with Scroll Animation */}
@@ -208,14 +208,14 @@ export default function SkillsSection() {
             whileInView={{ scale: 1, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 border border-blue-200 dark:border-blue-800 mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100  border border-blue-200  mb-6"
           >
-            <Code className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-            <span className="text-sm font-medium text-blue-700 dark:text-blue-300">Technical Expertise</span>
+            <Code className="w-4 h-4 text-blue-600 " />
+            <span className="text-sm font-medium text-blue-700 ">Technical Expertise</span>
           </motion.div>
 
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 dark:from-white dark:via-blue-100 dark:to-white bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900  bg-clip-text text-transparent">
               Skills &
             </span>
             <br />
@@ -224,7 +224,7 @@ export default function SkillsSection() {
             </span>
           </h2>
 
-          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-slate-600  max-w-2xl mx-auto leading-relaxed">
             A comprehensive overview of my technical skills and the technologies I work with to build exceptional
             digital experiences.
           </p>
@@ -245,7 +245,7 @@ export default function SkillsSection() {
               }}
               className="group"
             >
-              <div className="relative bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl border border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-xl transition-all duration-500 overflow-hidden">
+              <div className="relative bg-white/80  backdrop-blur-sm rounded-2xl border border-slate-200  shadow-lg hover:shadow-xl transition-all duration-500 overflow-hidden">
                 {/* Gradient Border Effect */}
                 <div
                   className={`absolute inset-0 bg-gradient-to-r ${skill.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl`}
@@ -260,7 +260,7 @@ export default function SkillsSection() {
                       e.stopPropagation()
                       toggleSection(index)
                     }}
-                    className="w-full p-6 lg:p-8 flex items-center justify-between hover:bg-slate-50/50 dark:hover:bg-slate-700/50 transition-colors duration-300 cursor-pointer"
+                    className="w-full p-6 lg:p-8 flex items-center justify-between hover:bg-slate-50/50  transition-colors duration-300 cursor-pointer"
                   >
                     <div className="flex items-center gap-4">
                       <motion.div
@@ -271,8 +271,8 @@ export default function SkillsSection() {
                         {skill.icon}
                       </motion.div>
                       <div className="text-left">
-                        <h3 className="text-xl lg:text-2xl font-bold text-slate-900 dark:text-white">{skill.title}</h3>
-                        <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+                        <h3 className="text-xl lg:text-2xl font-bold text-slate-900 ">{skill.title}</h3>
+                        <p className="text-sm text-slate-500  mt-1">
                           {skill.items.length} technologies
                         </p>
                       </div>
@@ -281,9 +281,9 @@ export default function SkillsSection() {
                     <motion.div
                       animate={{ rotate: expandedSections.includes(index) ? 180 : 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="p-2 rounded-lg bg-slate-100 dark:bg-slate-700 group-hover:bg-slate-200 dark:group-hover:bg-slate-600 transition-colors"
+                      className="p-2 rounded-lg bg-slate-100  group-hover:bg-slate-200  transition-colors"
                     >
-                      <ChevronDown className="w-5 h-5 text-slate-600 dark:text-slate-300" />
+                      <ChevronDown className="w-5 h-5 text-slate-600 " />
                     </motion.div>
                   </button>
                 </div>
@@ -299,7 +299,7 @@ export default function SkillsSection() {
                       className="overflow-hidden"
                     >
                       <div className="px-6 lg:px-8 pb-6 lg:pb-8">
-                        <div className="h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-700 to-transparent mb-6" />
+                        <div className="h-px bg-gradient-to-r from-transparent via-slate-200  to-transparent mb-6" />
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                           {skill.items.map((item, idx) => (
@@ -320,7 +320,7 @@ export default function SkillsSection() {
                               }}
                               className="group/item relative"
                             >
-                              <div className="relative bg-gradient-to-br from-white to-slate-50 dark:from-slate-700 dark:to-slate-800 border border-slate-200 dark:border-slate-600 rounded-xl p-4 hover:shadow-lg transition-all duration-300 cursor-pointer overflow-hidden">
+                              <div className="relative bg-gradient-to-br from-white to-slate-50  border border-slate-200  rounded-xl p-4 hover:shadow-lg transition-all duration-300 cursor-pointer overflow-hidden">
                                 {/* Hover Gradient */}
                                 <div
                                   className={`absolute inset-0 bg-gradient-to-r ${skill.color} opacity-0 group-hover/item:opacity-5 transition-opacity duration-300 rounded-xl`}
@@ -330,7 +330,7 @@ export default function SkillsSection() {
                                   <motion.div
                                     whileHover={{ rotate: 360 }}
                                     transition={{ duration: 0.6 }}
-                                    className="flex-shrink-0 p-2 bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-slate-200 dark:border-slate-600 group-hover/item:shadow-md transition-shadow"
+                                    className="flex-shrink-0 p-2 bg-white  rounded-lg shadow-sm border border-slate-200  group-hover/item:shadow-md transition-shadow"
                                   >
                                     <Image
                                       src={item.icon || "/placeholder.svg"}
@@ -342,10 +342,10 @@ export default function SkillsSection() {
                                   </motion.div>
 
                                   <div className="flex-1 min-w-0">
-                                    <h4 className="font-semibold text-slate-900 dark:text-white group-hover/item:text-blue-600 dark:group-hover/item:text-blue-400 transition-colors truncate">
+                                    <h4 className="font-semibold text-slate-900  group-hover/item:text-blue-600  transition-colors truncate">
                                       {item.name}
                                     </h4>
-                                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 truncate">
+                                    <p className="text-xs text-slate-500 mt-0.5 truncate">
                                       {item.desc}
                                     </p>
                                   </div>
