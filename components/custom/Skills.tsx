@@ -111,6 +111,12 @@ const skills = [
         className: "",
       },
       {
+        name: "MySQL",
+        desc: "Relational database",
+        icon: "/assets/mysql.png",
+        className: " object-contain",
+      },
+      {
         name: "PostgreSQL",
         desc: "SQL database",
         icon: "/assets/postgresql.svg",
@@ -120,6 +126,12 @@ const skills = [
         name: "Neon PostgresSQL",
         desc: "PostgreSQL ORM",
         icon: "/assets/neon.svg",
+        className: "",
+      },
+      {
+        name: "Convex",
+        desc: "Serverless database",
+        icon: "/assets/convex.jpg",
         className: "",
       },
       {
@@ -163,6 +175,18 @@ const skills = [
         name: "Clerk",
         desc: "Authentication tool",
         icon: "/assets/clerk.svg",
+        className: "rounded-lg",
+      },
+      {
+        name: "Stream API",
+        desc: "Video and chat API",
+        icon: "/assets/stream.jpg",
+        className: "rounded-lg",
+      },
+      {
+        name: "Gemini LLM",
+        desc: "AI Language Model",
+        icon: "/assets/gemini.png",
         className: "rounded-lg",
       },
     ],

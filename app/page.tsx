@@ -1,7 +1,5 @@
 "use client";
-
 import type React from "react";
-
 import { useState, useEffect, useRef } from "react";
 import {
   motion,
@@ -16,7 +14,6 @@ import {
   Linkedin,
   MapPin,
   GraduationCap,
-  School,
   Code2,
   ArrowRight,
   Palette,
@@ -28,6 +25,7 @@ import { TbBrandLeetcode } from "react-icons/tb";
 import SkillsSection from "@/components/custom/Skills";
 import ProjectsShowcase from "@/components/custom/Projects";
 import { introPages } from "@/constants";
+import { Button } from "@/components/ui/button";
 
 const pageVariants = {
   exit: (custom: number) => {
@@ -51,13 +49,11 @@ export default function page() {
   const containerRef = useRef<HTMLDivElement>(null);
   const skillsRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
-
   const [currentPage, setCurrentPage] = useState(0);
   const [showBento, setShowBento] = useState(false);
   const [bentoAnimationStage, setBentoAnimationStage] = useState(0);
   const [shouldShowIntro, setShouldShowIntro] = useState(true);
 
-  // Scroll-based animations
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
@@ -72,7 +68,6 @@ export default function page() {
   );
 
   useEffect(() => {
-    // Simple intro logic - always show intro on first load
     setShouldShowIntro(true);
   }, []);
 
@@ -96,7 +91,7 @@ export default function page() {
 
   const handleDownloadResume = () => {
     const link = document.createElement("a");
-    link.href = "/resume.pdf";
+    link.href = "/Prajyot Resume.pdf";
     link.download = "Prajyot_Porje_Resume.pdf";
     document.body.appendChild(link);
     link.click();
@@ -166,22 +161,32 @@ export default function page() {
 
   return (
     <div ref={containerRef} className="relative">
-      {/* Bento Grid Section with Scroll Animations */}
+      {/* Bento Grid Section */}
       <motion.div
         style={{
           y: bentoY,
           scale: bentoScale,
           opacity: bentoOpacity,
         }}
-        className="min-h-screen bg-gradient-to-br from-emerald-50 to-teal-50 overflow-x-hidden sticky top-0"
+        className="
+          min-h-screen
+          h-auto
+          bg-gradient-to-br from-emerald-50 to-teal-50
+          overflow-x-hidden
+          relative
+          md:min-h-screen
+          md:h-screen
+          md:sticky
+          md:top-0
+        "
       >
-        <div className="w-full h-screen p-2 sm:p-4 md:p-8">
+        <div className="w-full md:h-screen h-[120vh] p-2 sm:p-4 md:p-8">
           <div className="w-full h-full max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: bentoAnimationStage >= 1 ? 1 : 0 }}
               transition={{ duration: 1 }}
-              className="grid grid-cols-12 grid-rows-8 gap-2 sm:gap-4 w-full h-full overflow-hidden"
+              className="grid grid-cols-4 grid-rows-16 md:grid-cols-12 md:grid-rows-8 gap-2 sm:gap-4 w-full h-full overflow-hidden"
             >
               {/* Header */}
               <motion.div
@@ -197,14 +202,14 @@ export default function page() {
                   delay: !shouldShowIntro ? 0 : 0.1,
                   duration: 0.6,
                 }}
-                className="col-span-12 row-span-1 bg-emerald-800 rounded-xl sm:rounded-2xl p-3 sm:p-6 flex items-center justify-between overflow-hidden"
+                className="col-span-4 row-span-1 md:col-span-12 md:row-span-1 bg-emerald-800 rounded-xl sm:rounded-2xl p-3 sm:p-6 flex items-center justify-between overflow-hidden"
               >
                 <div>
                   <h1 className="text-lg sm:text-2xl font-bold text-white">
                     Prajyot Porje
                   </h1>
                   <p className="text-emerald-200 text-sm">
-                    Full Stack Developer & ML Engineer
+                    Full Stack Developer
                   </p>
                 </div>
                 <div className="flex gap-2 sm:gap-3">
@@ -228,7 +233,7 @@ export default function page() {
                   delay: !shouldShowIntro ? 0 : 0.2,
                   duration: 0.6,
                 }}
-                className="col-span-5 row-span-3 bg-emerald-700 rounded-xl sm:rounded-2xl p-4 sm:p-8 flex flex-col justify-center overflow-hidden"
+                className="col-span-4 row-span-2 md:col-span-5 md:row-span-3 bg-emerald-700 rounded-xl sm:rounded-2xl p-4 sm:p-8 flex flex-col justify-center overflow-hidden"
               >
                 <h2 className="text-xl sm:text-3xl font-light text-white leading-tight mb-2 sm:mb-4">
                   Crafting digital experiences through
@@ -243,7 +248,7 @@ export default function page() {
                 </p>
               </motion.div>
 
-              {/* Profile  */}
+              {/* Profile */}
               <motion.div
                 initial={
                   !shouldShowIntro
@@ -273,14 +278,14 @@ export default function page() {
                     setTimeout(() => setBentoAnimationStage(2), 100);
                   }
                 }}
-                className="col-span-3 row-span-3 bg-[#faf9f9] rounded-xl sm:rounded-2xl overflow-hidden"
+                className="col-span-4 row-span-3 md:col-span-3 md:row-span-3 bg-[#faf9f9] rounded-xl sm:rounded-2xl overflow-hidden"
               >
                 <Image
                   src="/assets/profile.jpg"
                   alt="Profile"
                   width={600}
                   height={800}
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-contain rounded-lg md:object-cover"
                 />
               </motion.div>
 
@@ -298,7 +303,7 @@ export default function page() {
                   delay: !shouldShowIntro ? 0 : 0.4,
                   duration: 0.6,
                 }}
-                className="col-span-4 row-span-2 bg-gradient-to-br from-teal-600 to-teal-700 rounded-xl sm:rounded-2xl p-4 sm:p-3 sm:px-4 overflow-hidden relative"
+                className="col-span-4 row-span-2 md:col-span-4 md:row-span-2 bg-gradient-to-br from-teal-600 to-teal-700 rounded-xl sm:rounded-2xl p-4 sm:p-3 sm:px-4 overflow-hidden relative"
               >
                 {/* Subtle background pattern */}
                 <div className="absolute inset-0 opacity-10">
@@ -315,7 +320,6 @@ export default function page() {
                       Education
                     </h3>
                   </div>
-
                   <div className="space-y-4">
                     <div className="bg-white/10 backdrop-blur-sm rounded-xl p-2 px-4 border border-white/20">
                       <div className="flex items-start justify-between mb-1">
@@ -324,9 +328,9 @@ export default function page() {
                             Bachelor of Engineering
                           </h4>
                         </div>
-                          <span className="text-teal-100 text-sm font-medium">
-                            2023 - 2027
-                          </span>
+                        <span className="text-teal-100 text-sm font-medium">
+                          2023 - 2027
+                        </span>
                       </div>
                       <p className="text-teal-100 text-sm font-medium mb-1">
                         Artificial Intelligence & Machine Learning
@@ -353,7 +357,7 @@ export default function page() {
                   delay: !shouldShowIntro ? 0 : 0.7,
                   duration: 0.6,
                 }}
-                className="col-span-4 row-span-3 bg-gradient-to-br from-purple-700 to-purple-800 rounded-xl sm:rounded-2xl p-4 sm:p-4 overflow- relative"
+                className="col-span-4 row-span-3 md:col-span-4 md:row-span-3 bg-gradient-to-br from-purple-700 to-purple-800 rounded-xl sm:rounded-2xl p-4 sm:p-4 overflow-hidden relative"
               >
                 {/* Subtle background pattern */}
                 <div className="absolute inset-0 opacity-10">
@@ -391,9 +395,17 @@ export default function page() {
                             )}
                           </div>
                         </div>
-                        <LinkPreview url="https://github.com/prajyot-porje" className="p-2 bg-purple-600/30 rounded-lg backdrop-blur-sm hover:bg-purple-600/50 transition-colors">
+                        <Button
+                          onClick={() =>
+                            window.open(
+                              "https://dev-flow-lime.vercel.app",
+                              "_blank"
+                            )
+                          }
+                          className="p-2 bg-purple-600/30 rounded-lg backdrop-blur-sm hover:bg-purple-600/50 transition-colors"
+                        >
                           <ExternalLink className="w-4 h-4 text-purple-200" />
-                        </LinkPreview>
+                        </Button>
                       </div>
                       <p className="text-purple-200 text-sm leading-relaxed">
                         AI-powered website builder with intelligent design
@@ -411,7 +423,7 @@ export default function page() {
                 </div>
               </motion.div>
 
-              {/* Skills  */}
+              {/* Skills */}
               <motion.div
                 initial={{
                   opacity: !shouldShowIntro ? 1 : 0,
@@ -425,7 +437,7 @@ export default function page() {
                   delay: !shouldShowIntro ? 0 : 0.5,
                   duration: 0.6,
                 }}
-                className="col-span-4 row-span-2 bg-slate-800 rounded-xl sm:rounded-2xl p-3 sm:p-6 overflow-hidden"
+                className="col-span-4 row-span-2 md:col-span-4 md:row-span-2 bg-slate-800 rounded-xl sm:rounded-2xl p-3 sm:p-6 overflow-hidden"
               >
                 <div className="flex items-center gap-2 mb-2 sm:mb-4">
                   <Code2 className="w-4 h-4 sm:w-5 sm:h-5 text-slate-300" />
@@ -434,23 +446,25 @@ export default function page() {
                   </h3>
                 </div>
                 <div className="grid grid-cols-3 gap-2 mb-3">
-                  {topSkills.map((skill, index) => (
-                    <motion.div
-                      key={skill.name}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{
-                        delay: !shouldShowIntro ? 0 : 0.6 + index * 0.1,
-                        duration: 0.3,
-                      }}
-                      className="bg-slate-600 rounded-lg p-2 text-center hover:bg-slate-500 transition-colors"
-                    >
-                      <span className="text-white text-sm font-medium">
-                        {skill.name}
-                      </span>
-                    </motion.div>
-                  ))}
+                  {topSkills
+                    .map((skill, index) => (
+                      <motion.div
+                        key={skill.name}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{
+                          delay: !shouldShowIntro ? 0 : 0.6 + index * 0.1,
+                          duration: 0.3,
+                        }}
+                        className="bg-slate-600 rounded-lg p-2 text-center hover:bg-slate-500 transition-colors"
+                      >
+                        <span className="text-white text-sm font-medium">
+                          {skill.name}
+                        </span>
+                      </motion.div>
+                    ))}
                 </div>
+
                 <button
                   onClick={handleSkillsNavigation}
                   className="flex items-center gap-1 text-slate-200 hover:text-white text-xs sm:text-sm group transition-colors w-full justify-center bg-slate-700 hover:bg-slate-600 rounded-lg py-2"
@@ -474,7 +488,7 @@ export default function page() {
                   delay: !shouldShowIntro ? 0 : 0.6,
                   duration: 0.6,
                 }}
-                className="col-span-4 row-span-2 bg-amber-600 rounded-xl sm:rounded-2xl p-3 sm:p-5 overflow-hidden"
+                className="col-span-4 row-span-3 md:col-span-4 md:row-span-2 bg-amber-600 rounded-xl sm:rounded-2xl p-3 sm:p-5 overflow-hidden"
               >
                 <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-1">
                   Let's Connect
@@ -493,6 +507,7 @@ export default function page() {
                     </span>
                   </div>
                 </div>
+
                 <button
                   onClick={handleDownloadResume}
                   className="flex items-center gap-1 text-amber-100 hover:text-white text-xs sm:text-sm group transition-colors w-full justify-center bg-amber-700 hover:bg-amber-800 rounded-lg py-2"
@@ -503,7 +518,6 @@ export default function page() {
               </motion.div>
 
               {/* Social Links */}
-              <div className="col-span-1 row-span-1"></div>
               <motion.div
                 initial={{
                   opacity: !shouldShowIntro ? 1 : 0,
@@ -517,7 +531,7 @@ export default function page() {
                   delay: !shouldShowIntro ? 0 : 0.8,
                   duration: 0.6,
                 }}
-                className="col-span-10 row-span-1 bg-slate-700 rounded-xl sm:rounded-2xl p-2 sm:p-4 flex items-center justify-between overflow-hidden"
+                className="col-span-4 row-span-1 md:col-span-12 md:row-span-1 bg-slate-700 rounded-xl sm:rounded-2xl p-2 sm:p-4 flex items-center justify-between overflow-hidden"
               >
                 <div className="flex items-center gap-3 sm:gap-4">
                   <LinkPreview url="https://github.com/prajyot-porje">
@@ -530,6 +544,7 @@ export default function page() {
                     <Linkedin className="w-5 h-5 sm:w-6 sm:h-6 text-slate-300 hover:text-white cursor-pointer transition-colors" />
                   </LinkPreview>
                 </div>
+
                 <div className="flex items-center gap-2 text-slate-300">
                   <span className="text-xs sm:text-sm">Available for Work</span>
                   <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-400 rounded-full animate-pulse"></div>
@@ -540,7 +555,7 @@ export default function page() {
         </div>
       </motion.div>
 
-      {/* Skills Section with Scroll Reveal */}
+      {/* Skills Section */}
       <motion.div
         ref={skillsRef}
         className="relative z-10 bg-white"
@@ -552,7 +567,7 @@ export default function page() {
         <SkillsSection />
       </motion.div>
 
-      {/* Projects Section with Scroll Reveal */}
+      {/* Projects Section  */}
       <motion.div
         ref={projectsRef}
         className="relative z-10"

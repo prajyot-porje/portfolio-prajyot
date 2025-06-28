@@ -1,161 +1,4 @@
 
-
-export const skills = [
-  {
-    title: "Frameworks and Libraries",
-    
-    items: [
-      {
-        name: "Next JS",
-        desc: "React Framework",
-        icon: "/assets/nextjs.svg",
-        className: "invert-dark",
-      },
-      {
-        name: "React JS",
-        desc: "JavaScript library",
-        icon: "/assets/reactjs.svg",
-        className: "",
-      },
-      {
-        name: "Node JS",
-        desc: "JavaScript runtime",
-        icon: "/assets/nodejs.svg",
-        className: "",
-      },
-      {
-        name: "Express JS",
-        desc: "Node Framework",
-        icon: "/assets/expressjs.svg",
-        className: "invert-dark",
-      },
-      {
-        name: "Tailwind CSS",
-        desc: "Utility-first CSS framework",
-        icon: "/assets/tailwindcss.svg",
-        className: "",
-      },
-      {
-        name: "Framer Motion",
-        desc: "Animation library",
-        icon: "/assets/framer-motion.svg",
-        className: "",
-      },
-    ],
-  },
-  {
-    title: "Programming Languages",
-    items: [
-      {
-        name: "JavaScript",
-        desc: "Programming language",
-        icon: "/assets/javascript.svg",
-        className: "rounded-md",
-      },
-      {
-        name: "TypeScript",
-        desc: "Programming language",
-        icon: "/assets/typescriptlang.svg",
-        className: "",
-      },
-      {
-        name: "Python",
-        desc: "Programming language",
-        icon: "/assets/python.svg",
-        className: "",
-      },
-      {
-        name: "C++",
-        desc: "Programming language",
-        icon: "/assets/cpp.svg",
-        className: "skill-cpp",
-      },
-      {
-        name: "C",
-        desc: "Programming language",
-        icon: "/assets/c.svg",
-        className: "",
-      },
-      {
-        name: "HTML",
-        desc: "Markup language",
-        icon: "/assets/html.svg",
-        className: "",
-      },
-      {
-        name: "CSS",
-        desc: "Styling language",
-        icon: "/assets/CSS.svg",
-        className: "",
-      },
-    ],
-  },
-  {
-    title: "Databases",
-    items: [
-      {
-        name: "MongoDB",
-        desc: "NoSQL database",
-        icon: "/assets/mongodb.svg",
-        className: "",
-      },
-      {
-        name: "PostgreSQL",
-        desc: "SQL database",
-        icon: "/assets/postgresql.svg",
-        className: "",
-      },
-      {
-        name: "Neon PostgresSQL",
-        desc: "PostgreSQL ORM",
-        icon: "/assets/neon.svg",
-        className: "",
-      },
-      {
-        name: "Drizzle",
-        desc: "PostgreSQL ORM",
-        icon: "/assets/drizzle.svg",
-        className: "invert-dark",
-      },
-    ],
-  },
-  {
-    title: "Tools",
-    items: [
-      {
-        name: "Git",
-        desc: "Version control system",
-        icon: "/assets/git.svg",
-        className: "",
-      },
-      {
-        name: "GitHub",
-        desc: "Code hosting platform",
-        icon: "/assets/github.svg",
-        className: "invert-dark",
-      },
-      {
-        name: "VS Code",
-        desc: "Code editor",
-        icon: "/assets/vscode.svg",
-        className: "",
-      },
-      {
-        name: "Figma",
-        desc: "Design tool",
-        icon: "/assets/figma.svg",
-        className: "",
-      },
-      {
-        name: "Clerk",
-        desc: "Authentication tool",
-        icon: "/assets/clerk.svg",
-        className: "rounded-lg",
-      },
-    ],
-  },
-];
-
 export const introPages = [
   {
     id: 1,
@@ -212,7 +55,7 @@ export const projectsData = [
     ],
     image: "/devflow.png",
     github: "https://github.com/prajyot-porje/devflow",
-    live: "https://devflow-ai.vercel.app",
+    live: "https://dev-flow-lime.vercel.app",
     year: "2025",
     status: "Production",
     metrics: {
@@ -284,8 +127,8 @@ export const projectsData = [
       "TalkFlow: TalkFlow An AI-powered chatbot application for intelligent, conversational experiences. Built with the Gemini API and modern web technologies",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Clerk", "Gemini"],
     image: "/talkflow1.png",
-    github: "https://github.com/prajyot-porje/dataviz",
-    live: "https://dataviz-demo.vercel.app",
+    github: "https://github.com/prajyot-porje/Talkflow",
+    live: "https://talkflow-eight.vercel.app/",
     year: "2024",
     status: "Beta",
     metrics: {
