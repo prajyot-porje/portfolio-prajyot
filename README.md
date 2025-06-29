@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💼 Prajyot Porje – Developer Portfolio
 
-## Getting Started
+A modern, visually engaging **portfolio website** to showcase my skills, projects, and background.  
+This site is designed for **presentation purposes only**—not intended for installation or use as a template.
 
-First, run the development server:
+[🌐 View Live Portfolio](https://portfolio-prajyot.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🙋‍♂️ About Me
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+I'm Prajyot Porje, a developer passionate about building beautiful, performant web experiences.  
+Connect with me on [LinkedIn](https://in.linkedin.com/in/prajyot-porje).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+> **Note:**  
+> This repository is for presentation and demonstration only.  
+> If you’d like to discuss collaborations or have questions, feel free to reach out!
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## 🎨 Visuals & Animations
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Animated Bento Grid:** Eye-catching, interactive layout for skills and project highlights.
+- **Smooth Transitions:** Framer Motion powers seamless, modern animations throughout the site.
+- **Clean UI:** Built with ShadCN UI and Vercel’s Geist font for a crisp, professional look.
+- **Fully Responsive:** Optimized for all screen sizes.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+
+## 🛠️ Built With
+
+- **Next.js** (App Router)
+- **TypeScript**
+- **Framer Motion**
+- **ShadCN UI**
+- **Vercel (Deployment)**
+
+---
+
+## 📢 About This Project
+
+This portfolio is a **personal showcase** of my work, skills, and design sensibility.  
+It is **not meant to be installed or reused** as a template—please enjoy exploring the visuals and animations!
+
+
+
